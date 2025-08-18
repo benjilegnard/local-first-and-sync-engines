@@ -1,0 +1,31 @@
+{
+  "name": "@benjilegnard/local-first-and-sync-engines",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.13.1",
+  "devDependencies": {
+    "@catppuccin/highlightjs": "^1.0.1",
+    "@catppuccin/palette": "^1.7.1",
+    "@preact/preset-vite": "^2.10.2",
+    "@types/reveal.js": "^5.2.0",
+    "prettier": "^3.6.2",
+    "sass": "^1.90.0",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.2"
+  },
+  "dependencies": {
+    "@preact/signals": "^2.2.1",
+    "preact": "^10.27.0",
+    "reveal.js": "^5.2.1"
+  }
+}

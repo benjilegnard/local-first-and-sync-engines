@@ -1,0 +1,155 @@
+@use "sass:color";
+
+// catppuccin palette
+@import "@catppuccin/palette/scss/_mocha.scss";
+
+// catppuccin theme for syntax highlighting
+@import "@catppuccin/highlightjs/sass/catppuccin-mocha.scss";
+
+// Default mixins and settings -----------------
+@import "reveal.js/css/theme/template/mixins";
+@import "reveal.js/css/theme/template/settings";
+// ---------------------------------------------
+
+// Include theme-specific fonts
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(/fonts/poppins-latin-700-normal.woff2) format('woff2'), url(/fonts/poppins-latin-700-normal.woff) format('woff');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/source-sans-pro-latin-400-normal.woff2) format('woff2'), url(/fonts/source-sans-pro-latin-400-normal.woff) format('woff');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Hack';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/hack-regular.woff2) format('woff2'), url(/fonts/hack-regular.woff) format('woff');
+}
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: $base;
+
+$mainColor: $subtext1;
+$headingColor: $text;
+
+$mainFontSize: 32px;
+$mainFont: "'Source Sans Pro', Arial, sans-serif";
+$headingFont: "'Poppins', Helvetica, sans-serif";
+$codeFont: Hack, monospace;
+$headingTextShadow: none;
+$headingMargin: 0 0 10px 0;
+$headingLetterSpacing: normal;
+$headingTextTransform: normal;
+$headingFontWeight: 600;
+$linkColor: $mauve;
+$linkColorHover: color.adjust($linkColor, $lightness: 15%);
+$selectionBackgroundColor: $surface2;
+
+$heading1Size: 2.3em;
+$heading2Size: 1.4em;
+$heading3Size: 1.1em;
+$heading4Size: 0.8em;
+
+// Change text colors against light slide backgrounds
+@include light-bg-text-color(#222);
+
+// Theme template ------------------------------
+@import "reveal.js/css/theme/template/theme";
+
+// ---------------------------------------------
+body,
+p,
+span {
+  cursor: url("images/cursor-hand.png"), auto;
+}
+
+button,
+button[type="button"],
+.graphics button,
+input {
+  cursor: url("images/cursor-hand-2.png"), auto;
+}
+
+input[type="range"]::-webkit-slider-thumb,
+input[type="range"]::-moz-range-thumb,
+input[type="range"]::-ms-thumb {
+  cursor: url("images/cursor-hand-2.png"), auto;
+}
+
+pre,
+code,
+code.hljs {
+  background-color: $crust;
+}
+
+iframe {
+  border: none;
+}
+
+img,
+svg {
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+.reveal .slides section {
+  text-align: left;
+}
+
+.reveal img,
+.reveal video {
+  max-width: 95%;
+  max-height: 95%;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// svg container
+.graphics {
+  position: relative;
+  text-align: center;
+  aspect-ratio: 1280 / 720;
+}
+
+.graphics svg {
+  width: 100%;
+  height: 100%;
+}
+
+.reveal iframe {
+  border: none;
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
+img.portrait {
+  border-radius: 50%;
+  max-width: 300px;
+  max-height: 300px;
+  aspect-ratio: 1/1;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+a.source {
+  font-size: .8em;
+}
