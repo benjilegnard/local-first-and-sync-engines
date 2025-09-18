@@ -4,7 +4,7 @@ lang: fr
 
 # Local-first et sync-engines, l'architecture du futur ?
 
-Une conférence de [Benjamin Legrand]() sur un pattern d'architecture moderne, efficace et performant, mais pas forcément simple à appréhender.
+Une conférence de [Benjamin Legrand](https://www.benjaminlegrand.net) sur un pattern d'architecture moderne, efficace et performant, mais pas forcément simple à appréhender.
 
 ## Abstract
 
@@ -75,7 +75,7 @@ Visibles sur <https://benjilegnard.github.io/local-first-and-sync-engines/>
 ## Sources 
 
 - <https://www.inkandswitch.com/local-first/>
-- <https://www.localfirst.fm/> + <https://www.localfirst.fm/landscape>
+- <https://www.localfirst.fm/> ( et particulièrement : <https://www.localfirst.fm/landscape> )
 - <https://www.localfirstconf.com/>
 - <https://electric-sql.com/use-cases/local-first-software>
 - <https://www.powersync.com/blog/local-first-is-a-big-deal-especially-for-the-web>
@@ -86,5 +86,19 @@ Visibles sur <https://benjilegnard.github.io/local-first-and-sync-engines/>
 - <https://zero.rocicorp.dev/>
 - <https://tonsky.me/blog/crdt-filesync/>
 - <https://www.typeonce.dev/article/how-to-implement-a-sync-engine-for-the-web>
+- <https://www.sandromaglione.com/articles/local-first-vs-sync-engines>
+- <https://x.com/housecor/status/1923373896260050976>
+- <https://expertofobsolescence.substack.com/p/the-hard-things-about-sync>
 
+
+TODOLIST:
+- ajouter latency values :
+- ajouter cacheing : https://planetscale.com/blog/caching
+- intro trop longue
+- aborder permission / sécurité
+- pre-shot les inquiétudes, cas d'usage.
+- insister sur le "on a déjà fait ça", oui mais on savait plus comment "we do not know why"
+- 
+- ajouter examples de synchros (multi-utilisateurs)
+- workflow BPMN / algorithme
 
