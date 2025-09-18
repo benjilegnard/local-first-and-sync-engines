@@ -7,22 +7,24 @@ import Reveal from "reveal.js";
 import Markdown from "reveal.js/plugin/markdown/markdown";
 import Notes from "reveal.js/plugin/notes/notes";
 import Highlight from "reveal.js/plugin/highlight/highlight";
-import RevealMath from "reveal.js/plugin/math/math";
 
+import { NetworkBalls } from "./slides/network-balls";
 
 let deck = new Reveal({
-    plugins: [Markdown, Notes, Highlight, RevealMath.KaTeX],
+    plugins: [Markdown, Notes, Highlight],
 });
-
 
 const components: Record<string, ComponentChild> = {
     // add ids as keys and preact component here if needed
+    // "latency-balls": LatencyBalls,
+    "network-balls": NetworkBalls,
+    // "classic-architecture": 
 };
 
 deck
     .initialize({
         progress: false,
-        controls: false,
+        controls: true,
         slideNumber: "c/t",
         showSlideNumber: "speaker",
         hashOneBasedIndex: true,
@@ -32,7 +34,6 @@ deck
         backgroundTransition: "none",
         history: true,
         pdfSeparateFragments: false,
-        keyboard: { b: null } as unknown as boolean,
     })
     .then(() => {
         // initialize preact components in slides
@@ -43,6 +44,9 @@ deck
                 return;
             }
             render(components[id], element);
+        });
+        Reveal.on('slidechanged', (event) => {
+            console.log("slidechanged", event);
         });
     });
 
