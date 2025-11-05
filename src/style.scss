@@ -1,10 +1,8 @@
 @use "sass:color";
 
-// catppuccin palette
-@import "@catppuccin/palette/scss/_mocha.scss";
-
-// catppuccin theme for syntax highlighting
-@import "@catppuccin/highlightjs/sass/catppuccin-mocha.scss";
+// catppuccin palettes
+@use "@catppuccin/palette/scss/_latte" as latte;
+@use "@catppuccin/palette/scss/_mocha" as mocha;
 
 // Default mixins and settings -----------------
 @import "reveal.js/css/theme/template/mixins";
@@ -39,11 +37,73 @@
   src: url(/fonts/hack-regular.woff2) format('woff2'), url(/fonts/hack-regular.woff) format('woff');
 }
 
-// Override theme settings (see ../template/settings.scss)
-$backgroundColor: $base;
+// Define CSS custom properties for theming
+:root {
+  // Default to Latte (light mode)
+  --ctp-rosewater: #{latte.$rosewater};
+  --ctp-flamingo: #{latte.$flamingo};
+  --ctp-pink: #{latte.$pink};
+  --ctp-mauve: #{latte.$mauve};
+  --ctp-red: #{latte.$red};
+  --ctp-maroon: #{latte.$maroon};
+  --ctp-peach: #{latte.$peach};
+  --ctp-yellow: #{latte.$yellow};
+  --ctp-green: #{latte.$green};
+  --ctp-teal: #{latte.$teal};
+  --ctp-sky: #{latte.$sky};
+  --ctp-sapphire: #{latte.$sapphire};
+  --ctp-blue: #{latte.$blue};
+  --ctp-lavender: #{latte.$lavender};
+  --ctp-text: #{latte.$text};
+  --ctp-subtext1: #{latte.$subtext1};
+  --ctp-subtext0: #{latte.$subtext0};
+  --ctp-overlay2: #{latte.$overlay2};
+  --ctp-overlay1: #{latte.$overlay1};
+  --ctp-overlay0: #{latte.$overlay0};
+  --ctp-surface2: #{latte.$surface2};
+  --ctp-surface1: #{latte.$surface1};
+  --ctp-surface0: #{latte.$surface0};
+  --ctp-base: #{latte.$base};
+  --ctp-mantle: #{latte.$mantle};
+  --ctp-crust: #{latte.$crust};
 
-$mainColor: $subtext1;
-$headingColor: $text;
+  // Switch to Mocha for dark mode
+  @media (prefers-color-scheme: dark) {
+    --ctp-rosewater: #{mocha.$rosewater};
+    --ctp-flamingo: #{mocha.$flamingo};
+    --ctp-pink: #{mocha.$pink};
+    --ctp-mauve: #{mocha.$mauve};
+    --ctp-red: #{mocha.$red};
+    --ctp-maroon: #{mocha.$maroon};
+    --ctp-peach: #{mocha.$peach};
+    --ctp-yellow: #{mocha.$yellow};
+    --ctp-green: #{mocha.$green};
+    --ctp-teal: #{mocha.$teal};
+    --ctp-sky: #{mocha.$sky};
+    --ctp-sapphire: #{mocha.$sapphire};
+    --ctp-blue: #{mocha.$blue};
+    --ctp-lavender: #{mocha.$lavender};
+    --ctp-text: #{mocha.$text};
+    --ctp-subtext1: #{mocha.$subtext1};
+    --ctp-subtext0: #{mocha.$subtext0};
+    --ctp-overlay2: #{mocha.$overlay2};
+    --ctp-overlay1: #{mocha.$overlay1};
+    --ctp-overlay0: #{mocha.$overlay0};
+    --ctp-surface2: #{mocha.$surface2};
+    --ctp-surface1: #{mocha.$surface1};
+    --ctp-surface0: #{mocha.$surface0};
+    --ctp-base: #{mocha.$base};
+    --ctp-mantle: #{mocha.$mantle};
+    --ctp-crust: #{mocha.$crust};
+  }
+}
+
+// Override theme settings (see ../template/settings.scss)
+// Use Catppuccin Latte colors as base for SASS compilation
+$backgroundColor: latte.$base;
+
+$mainColor: latte.$subtext1;
+$headingColor: latte.$text;
 
 $mainFontSize: 32px;
 $mainFont: "'Source Sans Pro', Arial, sans-serif";
@@ -54,9 +114,9 @@ $headingMargin: 0 0 10px 0;
 $headingLetterSpacing: normal;
 $headingTextTransform: normal;
 $headingFontWeight: 600;
-$linkColor: $mauve;
-$linkColorHover: color.adjust($linkColor, $lightness: 15%);
-$selectionBackgroundColor: $surface2;
+$linkColor: latte.$mauve;
+$linkColorHover: color.adjust(latte.$mauve, $lightness: 15%);
+$selectionBackgroundColor: latte.$surface2;
 
 $heading1Size: 2.3em;
 $heading2Size: 1.4em;
@@ -70,6 +130,20 @@ $heading4Size: 0.8em;
 @import "reveal.js/css/theme/template/theme";
 
 // ---------------------------------------------
+
+// Override reveal.js CSS custom properties for dark mode
+@media (prefers-color-scheme: dark) {
+  :root {
+    --r-background-color: #{mocha.$base};
+    --r-main-color: #{mocha.$subtext1};
+    --r-heading-color: #{mocha.$text};
+    --r-link-color: #{mocha.$mauve};
+    --r-link-color-hover: #{color.adjust(mocha.$mauve, $lightness: 15%)};
+    --r-link-color-dark: #{color.adjust(mocha.$mauve, $lightness: -15%)};
+    --r-selection-background-color: #{mocha.$surface2};
+  }
+}
+
 body,
 p,
 span {
@@ -92,7 +166,7 @@ input[type="range"]::-ms-thumb {
 pre,
 code,
 code.hljs {
-  background-color: $crust;
+  background-color: var(--ctp-crust) !important;
 }
 
 iframe {
@@ -159,4 +233,10 @@ img.qrcode {
 .reveal h1,
 .reveal h2 {
   text-shadow: 0 0 10px black;
+  color: white !important;
 }
+
+// Conditional syntax highlighting themes using CSS @import (not SASS @import)
+// CSS @import supports media queries
+@import url("@catppuccin/highlightjs/css/catppuccin-latte.css") (prefers-color-scheme: light);
+@import url("@catppuccin/highlightjs/css/catppuccin-mocha.css") (prefers-color-scheme: dark);
