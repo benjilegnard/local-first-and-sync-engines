@@ -144,25 +144,6 @@ $heading4Size: 0.8em;
   }
 }
 
-body,
-p,
-span {
-  cursor: url("images/cursor-hand.png"), auto;
-}
-
-button,
-button[type="button"],
-.graphics button,
-input {
-  cursor: url("images/cursor-hand-2.png"), auto;
-}
-
-input[type="range"]::-webkit-slider-thumb,
-input[type="range"]::-moz-range-thumb,
-input[type="range"]::-ms-thumb {
-  cursor: url("images/cursor-hand-2.png"), auto;
-}
-
 pre,
 code,
 code.hljs {
