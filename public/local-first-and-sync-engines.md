@@ -33,7 +33,8 @@ Notes :
 
 
 ### Architecture... populaire ?
-<img src="/schemas/cloud-first-software.webp"/>
+<div id="classic-architecture"></div>
+<!--<img src="/schemas/cloud-first-software.webp"/>-->
 
 Notes :
 - SPA/UI <=> API <=> DB
@@ -64,8 +65,11 @@ Send packet CA->Netherlands->CA    150,000,000   ns  150,000 us  150 ms
 <https://gist.github.com/jboner/2841832>
 
 
-#### Latency Balls
+#### Latence
 <div id="latency-balls"></div>
+
+
+#### Latence (source)
 
 <https://planetscale.com/blog/caching>
 
@@ -76,6 +80,8 @@ Notes :
 
 
 #### Network Calls
+<div id="network-balls"></div>
+
 - Qu'est ce qui est "acceptable" ?
 
 Notes :

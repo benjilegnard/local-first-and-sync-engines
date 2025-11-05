@@ -9,6 +9,8 @@ import Notes from "reveal.js/plugin/notes/notes";
 import Highlight from "reveal.js/plugin/highlight/highlight";
 
 import { NetworkBalls } from "./slides/network-balls";
+import { ClassicArchitecture } from "./slides/classic-architecture";
+import { LatencyBalls } from "./slides/latency-balls";
 
 let deck = new Reveal({
     plugins: [Markdown, Notes, Highlight],
@@ -16,9 +18,10 @@ let deck = new Reveal({
 
 const components: Record<string, ComponentChild> = {
     // add ids as keys and preact component here if needed
-    // "latency-balls": LatencyBalls,
+
+    "latency-balls": LatencyBalls,
     "network-balls": NetworkBalls,
-    // "classic-architecture": 
+    "classic-architecture": ClassicArchitecture,
 };
 
 deck
@@ -36,15 +39,20 @@ deck
         pdfSeparateFragments: false,
     })
     .then(() => {
-        // initialize preact components in slides
-        Object.keys(components).forEach((id) => {
-            const element = document.getElementById(id);
-            if (!element) {
-                console.warn(`Element with id ${id} is missing!`);
-                return;
-            }
-            render(components[id], element);
-        });
+        // Wait for markdown to be parsed
+        setTimeout(() => {
+            // initialize preact components in slides
+            Object.keys(components).forEach((id) => {
+                const element = document.getElementById(id);
+                if (!element) {
+                    console.warn(`Element with id ${id} is missing!`);
+                    return;
+                }
+                const Component = components[id] as any;
+                render(<Component />, element);
+            });
+        }, 100);
+
         Reveal.on('slidechanged', (event) => {
             console.log("slidechanged", event);
         });
