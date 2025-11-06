@@ -130,8 +130,9 @@ export const NetworkBalls: FunctionalComponent = () => {
         <SvgContainer>
             <path
                 d={WORLD_MAP_PATH}
-                style="fill:#313244;stroke-width:0.604492"
-                id="world-map" />
+                id="world-map"
+                fill="var(--ctp-surface2)"
+            />
 
             {/* Connection paths */}
             {CONNECTIONS.map((connection, index) => {
@@ -190,8 +191,6 @@ export const NetworkBalls: FunctionalComponent = () => {
                         cy={city.y}
                         r="6"
                         fill="var(--ctp-red)"
-                        stroke="var(--ctp-text)"
-                        stroke-width="2"
                     />
                     <text
                         x={city.x}

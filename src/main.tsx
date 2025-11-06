@@ -11,6 +11,10 @@ import Highlight from "reveal.js/plugin/highlight/highlight";
 import { NetworkBalls } from "./slides/network-balls";
 import { ClassicArchitecture } from "./slides/classic-architecture";
 import { LatencyBalls } from "./slides/latency-balls";
+import { LocalFirstSoftware } from "./slides/local-first-software";
+import { DataFetching } from "./slides/data-fetching";
+import { DataSync } from "./slides/data-sync";
+import { CloudFirstSoftware } from "./slides/cloud-first-software";
 
 let deck = new Reveal({
     plugins: [Markdown, Notes, Highlight],
@@ -22,6 +26,10 @@ const components: Record<string, ComponentChild> = {
     "latency-balls": LatencyBalls,
     "network-balls": NetworkBalls,
     "classic-architecture": ClassicArchitecture,
+    "cloud-first-software": CloudFirstSoftware,
+    "local-first-software": LocalFirstSoftware,
+    "data-fetching": DataFetching,
+    "data-sync": DataSync,
 };
 
 deck

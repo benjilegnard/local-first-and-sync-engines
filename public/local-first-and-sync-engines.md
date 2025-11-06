@@ -16,8 +16,16 @@ Notes :
 - en reconversion, découvre le monde
 
 
+## Front / Back
+<div id="classic-architecture"></div>
+
+Notes :
+- il arrive sur les projets et on lui dit, tu va faire du front
+- il fait sa feature, en local, boume, il livre et là : bugs de partout, on peut cliquer plusieurs fois sur un bouton, son appli crashe en cas de réponse 500 du serveur.
+
+
 ### le dev web front aujourd'hui c'est l'enfer
-<img src="/images/memes/npm-massive-worm.jpeg"/>
+<img src="images/memes/npm-massive-worm.jpeg" style="max-height:50vh"/>
 Notes :
 - bon... ceci n'est pas un talk pour cracher sur l'écosystème NPM
 - ni sur js, ni sur node.js
@@ -25,7 +33,9 @@ Notes :
 
 
 ### Taille des bundle javascript.
-- ne sera pas addressée dans ce talk.
+<img src="images/memes/node-modules-big-ahah.webp" style="max-height:50vh"/>
+
+- 📦 ne sera pas addressée dans ce talk.<!-- .element class="fragment"-->
 Notes :
 - oui, désolé, c'est pas le sujet
 - contexte, je vais parler d'APPLICATIONS WEB, pas de sites statiques.
@@ -33,8 +43,8 @@ Notes :
 
 
 ### Architecture... populaire ?
-<div id="classic-architecture"></div>
-<!--<img src="/schemas/cloud-first-software.webp"/>-->
+<div id="cloud-first-software"></div>
+<!--<img src="schemas/cloud-first-software.webp"/>-->
 
 Notes :
 - SPA/UI <=> API <=> DB
@@ -73,10 +83,12 @@ Send packet CA->Netherlands->CA    150,000,000   ns  150,000 us  150 ms
 
 <https://planetscale.com/blog/caching>
 
-<img class="qrcode" src="/images/qrcodes/qrcode-planetscale-caching.png"/>
+<img class="qrcode" src="images/qrcodes/qrcode-planetscale-caching.png"/>
 
 Notes :
 - à garder en tête, ici on est à l'intérieur d'un ordinateur
+- en dessous de la milliseconde, si vous avez des appliquations qui mettent plus d'une seconde à démarrer faut se poser des questions
+- nos applications web et distribuées d'aujourd'hui elles ont un impondérable: la latence réseau
 
 
 #### Network Calls
@@ -85,7 +97,8 @@ Notes :
 - Qu'est ce qui est "acceptable" ?
 
 Notes :
-- je pose la question
+- C'est physique, la distance fait qu'on doit gérer ça
+- acceptable en terme de tmps de réponse ? je pose la question ?
 - à l'heure ou la loi de moore n'en finit plus, mais on ne la voit plus
 - des centaines de milliards de petaflop de GPU dans le cloud.
 
@@ -95,9 +108,10 @@ Notes :
 - 🛜 Wifi de conférence<!-- .element class="fragment"-->
 - 🍻 Au fond de votre bar préféré<!-- .element class="fragment"-->
 Notes :
-- j'entends souvent : des trucs du genre oui, mais à l'heure de la fibre
+- j'entends souvent : des trucs du genre oui, mais à l'heure de la fibre,
 - à l'heure du cloud et du haut débit, c'est pas si grave
 - c'est pas grave si notre api principale mets 1,5 secondes à répondre ? QUOI ? je hurle
+- 
 
 
 #### Rappel
@@ -109,7 +123,7 @@ Notes :
 - c'est pas parce qu'on fait des nimations à cette lenteur que vos services sont "autorisés" à prendre autant de temps  !!!
 
 
-### Gestion d'erreurs réseau
+### What could go wrong ?
 
 ```javascript
 import React, { useState, useEffect } from 'react'; 
@@ -144,6 +158,7 @@ function DataFetchingExample() {
   );
 }
 ```
+
 #### EVERYTHING!<!-- .element class="fragment"-->
 Notes :
 - Qu'est ce qui va pas dans ce code ? en dehors que c'est du react
@@ -175,22 +190,6 @@ Notes :
 - Par des pratiques UI, example, like sur twitter, direct animation, mais si échec ?
 
 
-### on a accepté "la merdification du web/du logiciel"
-- Et c'est triste
-Notes :
-- menu react native windows
-- loading de 30 second avant d'afficher une page.
-
-
-### "on a toujours fait comme ça"
-
-Notes :
-- je sais pas comment l'adresser
-- on est comfortables dans nos positions
-- les API's REST/JSON + back en SPA c'est bien
-- mais un autre monde est possible...
-
-
 ### There is no cloud
 #### it's just someone else's computer
 
@@ -202,6 +201,14 @@ Notes :
 - Pourtant il y a, du moins il y aurait
 - Du coup est apparu le concept principal dont je veux parler aujourd'hui
 - Le "local-first"
+
+
+### Complexité du front
+- gestion d'erreurs possibles
+- asynchronicité / conditions de course
+Notes :
+- aujourd'hui si on a des SPA, gestion d'état et que le front web est devnu
+- c'es à cause de la latence à gérer
 
 
 
@@ -246,7 +253,9 @@ Notes :
 - oui, ironiquement, il y a tout ajd pour qu'une app web fonctionne hors ligne
 - `navigator.connection`
 - service worker
-- // TODO friends même
+
+
+<img src="image/memes/phoebe-teaching-joey-in-friends.jpg" style="max-height: 40vh"/>
 
 
 #### 4. Seamless collaboration with your colleagues
@@ -255,6 +264,7 @@ Notes :
 Notes :
 - changement de paradigme avec différence d'état
 - on considère que tout le monde a tout le temps la même version
+- gérer les conflits avec les données des autres plutôt que sous une autorité centrale
 
 
 #### 5. The long now
@@ -271,7 +281,7 @@ Notes :
 
 #### 7. You retain ultimate ownership and control
 - Vous possédéz vos données.
-- 
+- Vous contrôlez vos données.
 
 
 ### Les idéaux...
@@ -286,6 +296,21 @@ Notes :
 - c'est là ou on veut avoir besoin...
 
 
+### Dans quel cas d'usage
+- ✅ édition de documents/fichiers (graphes/canvas, dessins, texte, musique)<!-- .element class="fragment"-->
+- ✅ données personnelles (notes, chat, calendriers, budget, localisation)<!-- .element class="fragment"-->
+- ❌ Back office CRUD de gestion<!-- .element class="fragment"-->
+- ✅ Back office CRUD de gestion<!-- .element class="fragment"-->
+- ❌ réseau social<!-- .element class="fragment"-->
+- ❌ e-commerce<!-- .element class="fragment"-->
+- ❌ banque<!-- .element class="fragment"-->
+
+Notes :
+- tout ce qui a besoin d'une centralisation / autorité / source of truth
+- CRUD de gestion : si pas besoin d'instantanéité
+- en vrai
+
+
 
 <!-- .slide: data-background-image="images/hollow-knight/hornet.jpeg" data-background-position="center center" data-background-size="cover" --> 
 ## 3. Qu'est ce que ça veut dire, et en quoi c'est différent ?
@@ -297,7 +322,12 @@ On a vu ce que c'était maintenant, comment on implémente ?
 
 
 ### Un petit schéma
-<img src="/schemas/local-first-software.webp" />
+<img src="schemas/local-first-software.webp" />
+
+
+<div id="local-first-software"></div>
+Notes :
+- l'idée c'est que tout tourne en local d'abord.
 
 
 #### Base de données locale
@@ -315,8 +345,9 @@ Notes :
 
 
 #### But why?
+<img src="images/memes/ryan-reynolds-but-why.gif" alt="L'acteur Ryan Reynolds en tenue de chirurgien quie demande 'mais pourquoi?'"/>
 
-Notes:
+Notes :
 - vitesse
 - offline
 - privacy
@@ -396,15 +427,56 @@ Notes:
 ```
 Notes :
 - pour le coup c'est un vrai todo,
-- en mode certaines solutions vous
+- en mode certaines solutions vous demande d'implémenter ça
 
 
-### CRDT (Conflit-free Replicated Data Types)
-// TODO
+### Git
+
+
+### CRDT 
+- __C__onflit-free 
+- __R__eplicated 
+- __D__ata
+- __T__ypes
+Notes :
+- au coeur de ces moteurs de synchro, il y a la notion primordiale
+- l'idée c'est qu'au niveau du modèle de donnée, la résolution de conflits va être automatique
+
+
+### Yjs
+
+
+### Example de CRDT avec Yjs
+
+```typescript
+import * as Y from 'yjs'
+
+// Yjs documents are collections of
+// shared objects that sync automatically.
+const ydoc = new Y.Doc()
+// Define a shared Y.Map instance
+const ymap = ydoc.getMap()
+ymap.set('keyA', 'valueA')
+
+// Create another Yjs document (simulating a remote user)
+// and create some conflicting changes
+const ydocRemote = new Y.Doc()
+const ymapRemote = ydocRemote.getMap()
+ymapRemote.set('keyB', 'valueB')
+
+// Merge changes from remote
+const update = Y.encodeStateAsUpdate(ydocRemote)
+Y.applyUpdate(ydoc, update)
+
+// Observe that the changes have merged
+console.log(ymap.toJSON()) // => { keyA: 'valueA', keyB: 'valueB' }
+```
 
 
 ### décentralisation, réplication etc...
 
+Notes :
+- 
 
 
 <!-- .slide: data-background-image="images/hollow-knight/bench-crooked.jpeg" data-background-position="center center" data-background-size="cover" --> 
@@ -431,7 +503,7 @@ Notre héros rencontre des péripéties, différentes implémentations, comparat
 - zero
 - replicache 
 - electricSQL
-- Firestore
+- Livestore
 - Powersync
 - Evolu
 - Ditto
@@ -441,8 +513,8 @@ Notes :
 
 
 #### Zero
-<img src="/images/logos/zero.svg" />
-<img src="/images/qrcodes/qrcode-zero.png" class="qrcode" />
+<img src="images/logos/zero.svg" />
+<img src="images/qrcodes/qrcode-zero.png" class="qrcode" />
 
 [https://zero.rocicorp.dev/](https://zero.rocicorp.dev/)
 
@@ -493,6 +565,34 @@ Notes :
 - méthodes mutate / query
 
 
+### Apparté sur Zero
+- encore en alpha
+- pas complètement "local-first" pour l'instant
+Notes :
+- je préfères pas le recommander, mais
+- la base est là
+
+
+### Query / Mutation
+| ?  | HTTP |
+| - | - |
+| query  | GET  |
+| mutate  | POST  |
+|   | PUT  |
+|   | PATCH  |
+|   | DELETE  |
+|   | OPTIONS |
+|   | TRACE |
+|   | CONNECT |
+|   | HEAD |
+
+Notes :
+- Si vous avez fait du graphql ca doit vous parler,
+- Bien plus simple à appréhender
+- de toutes facons est-ce que vous utilisiez vraiment autre chose que GET et POST
+- y'a pas que Zero qui offre ce genre d'api, la plupart des stores / sync engines s'en approche
+
+
 
 <!-- .slide: data-background-image="images/hollow-knight/mantis-lords.webp" data-background-position="center center" data-background-size="cover" -->
 ## 6. La souffrance du changement
@@ -501,10 +601,16 @@ Notes :
 
 
 ### changement de paradigme
-<img src="/schemas/data-fetching.png"/>
+<img src="schemas/data-fetching.png"/>
 
 
-<img src="/schemas/data-sync.png"/>
+<div id="data-fetching"></div>
+
+
+<img src="schemas/data-sync.png"/>
+
+
+<div id="data-sync"></div>
 
 
 ### MPA / SPA / PWA / local-first
@@ -542,7 +648,12 @@ Notes :
 - déplacé côté serveur, nécéssite de code isomorphique/universel
 
 
-### oui, mais si on danse ? ( Il n'y a pas de balles en argent = quand ne pas l'utiliser )
+### oui, mais si on danse ?
+- si besoin d'autorité centrale
+- 
+Notes :
+- ( Il n'y a pas de balles en argent = quand ne pas l'utiliser )
+- 
 
 
 
@@ -551,14 +662,18 @@ Notes :
 
 
 ### Démonstration / POC.
+Pas aujourd'hui.
 
 
 ### Pourquoi c'est bien tout ça ?
 - plus besoin de librairie de gestion d'état ?
 - la base de données locale est votre état.
+- redonner contrôle à vos utilisateurs
 
 
-### C'est toujours des webapps ( ou des apps mobiles )
+### C'est toujours des webapps
+- on reste sur du web (js/html/css)
+- webap mobile 
 
 
 ### Juste la manière d'interagir au niveau client serveur n'est plus du tout la même
@@ -571,11 +686,11 @@ Notes :
 - je vais me prendre des tomates.
 - Mais c'est une bonne chose.
 - on peut prototyper rapidement sans ce soucier de l'hosting / database dans un premier temps.
-
+- arrêtons de siloter devs back vs devs front, faites tout dans le même language = le bonheur
 
 
 <!-- .slide: data-background-image="images/hollow-knight/colloseum-arena.webp" data-background-position="center center" data-background-size="cover" -->
-## 8. Conclusion / Questions
+## 8. Conclusion
 
 Notes :
 - est-ce que ça va changer le développement web et mobile ? (~= 3 minutes) 
@@ -590,6 +705,7 @@ Notes :
 
 Notes :
 - dans des cas de niche (mon premier vrai projet pwa / mobile => implémentait lui même la sync)
+- vous étiez obligé de l'implémenter vous-même.
 - de plus en plus de libs/framework
 - écosystème:
 
@@ -600,9 +716,11 @@ Notes :
 #### Ecosystème
 <https://www.localfirst.fm/landscape>
 
+<img class="qrcode" src="images/qrcodes
+
 
 #### Adoption
-<img src="/images/local-first-popularity.jpeg" />
+<img src="images/local-first-popularity.jpeg" />
 
 
 ### La complexité
@@ -619,20 +737,11 @@ Notes :
 - pas de balle en argent
 
 
-### Dans quel cas d'usage
-- ✅ édition de documents/fichiers (graphes/canvas, dessins, texte, musique)<!-- .element class="fragment"-->
-- ✅ données personnelles (notes, chat, calendriers, budget)<!-- .element class="fragment"-->
-- ❌ CRUD de gestion<!-- .element class="fragment"-->
-- ❌ réseau social<!-- .element class="fragment"-->
-- ❌ e-commerce<!-- .element class="fragment"-->
-- ❌ banque<!-- .element class="fragment"-->
 
-Notes :
-- tout ce qui a besoin d'une centralisation
 
 
 ### Agentique Sync ?
-<img src="/schemas/agentic-ia-sync.webp" />
+<img src="schemas/agentic-ia-sync.webp" />
 
 
 ### Au minimum, pensons-y.
@@ -643,11 +752,16 @@ Notes :
 
 ### Votre serviteur
 
-<img src="/images/memes/benjilegnard.png" style="border-radius:50%"/>
+<img src="images/memes/benjilegnard.png" style="border-radius:50%"/>
 
 `@benjilegnard`
 
-<img src="/images/logos/onepoint-logo.png" class="fragment" />
+<img src="images/logos/onepoint-logo.png" class="fragment" />
+Notes :
+- je m'appelle..
+- RS
+-
+
 
 
 <!-- .slide: data-background-image="images/hollow-knight/thanks.jpeg" data-background-position="center center" data-background-size="cover" -->
@@ -656,4 +770,13 @@ Notes :
 😘 Et jouez à Hollow Knight / Silksong
 
 
+## Slides / Feedback
 
+<div class="row">
+<a>
+Feedback :<br/>
+<img src="images/qrcodes/bdxio-openfeedback.png" /></a>
+<a>
+Slides :<br/>
+<img src="images/qrcodes/slides-on-github.png" /></a>
+</div>

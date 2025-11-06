@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1280"
+   height="720"
+   viewBox="0 0 1280 720"
+   version="1.1"
+   id="svg1094"
+   sodipodi:docname="classic-architecture.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1096"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="true"
+     inkscape:zoom="0.23177389"
+     inkscape:cx="261.03027"
+     inkscape:cy="606.19425"
+     inkscape:window-width="945"
+     inkscape:window-height="1025"
+     inkscape:window-x="3845"
+     inkscape:window-y="1125"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1094">
+    <inkscape:grid
+       type="xygrid"
+       id="grid1933"
+       snapvisiblegridlinesonly="true" />
+  </sodipodi:namedview>
+  <rect
+     x="70"
+     y="100"
+     width="480"
+     height="520"
+     fill="none"
+     stroke="var(--ctp-overlay0)"
+     stroke-width="3.5"
+     stroke-dasharray="10, 5"
+     id="rect1024"
+     style="fill:none;stroke:#11111b" />
+  <text
+     x="290"
+     y="140"
+     fill="var(--ctp-subtext1)"
+     font-size="32px"
+     font-family="'Source Sans Pro', sans-serif"
+     text-anchor="middle"
+     id="text1026"
+     style="fill:none;stroke:#11111b">Front</text>
+  <line
+     x1="175"
+     y1="430"
+     x2="15"
+     y2="430"
+     stroke="var(--ctp-text)"
+     stroke-width="3.5"
+     marker-end="url(#arrowhead-left)"
+     id="line1044" />
+  <rect
+     x="725"
+     y="100"
+     width="480"
+     height="520"
+     fill="none"
+     stroke="var(--ctp-overlay0)"
+     stroke-width="3.5"
+     stroke-dasharray="10, 5"
+     id="rect1046"
+     style="fill:none;stroke:#11111b" />
+  <text
+     x="965"
+     y="165"
+     fill="var(--ctp-subtext1)"
+     font-size="32px"
+     font-family="'Source Sans Pro', sans-serif"
+     text-anchor="middle"
+     id="text1048"
+     style="fill:none;stroke:#11111b">Back</text>
+  <line
+     x1="380"
+     y1="370"
+     x2="855"
+     y2="370"
+     stroke="var(--ctp-text)"
+     stroke-width="3.5"
+     marker-end="url(#arrowhead)"
+     id="line1060"
+     style="fill:none;stroke:#11111b" />
+  <rect
+     x="870"
+     y="320"
+     width="190"
+     height="90"
+     rx="8"
+     fill="none"
+     stroke="var(--ctp-text)"
+     stroke-width="3.5"
+     id="rect1062"
+     style="fill:none;stroke:#11111b" />
+  <text
+     x="973.4375"
+     y="381.28125"
+     fill="var(--ctp-text)"
+     font-size="28px"
+     font-family="'Source Sans Pro', sans-serif"
+     text-anchor="middle"
+     id="text1064"
+     style="fill:none;stroke:#11111b">Serveur</text>
+  <rect
+     x="170"
+     y="320"
+     width="190"
+     height="90"
+     rx="8"
+     fill="none"
+     stroke="var(--ctp-text)"
+     stroke-width="3.5"
+     id="rect1062-2"
+     style="fill:none;stroke:#11111b" />
+  <text
+     x="265"
+     y="370"
+     fill="var(--ctp-text)"
+     font-size="28px"
+     font-family="'Source Sans Pro', sans-serif"
+     text-anchor="middle"
+     id="text1064-9"
+     style="fill:none;stroke:#11111b">Client</text>
+  <defs
+     id="defs1092">
+    <marker
+       id="arrowhead"
+       markerWidth="10"
+       markerHeight="10"
+       refX="8"
+       refY="3"
+       orient="auto">
+      <path
+         d="M 0,0 8,3 0,6"
+         fill="none"
+         stroke="var(--ctp-text)"
+         stroke-width="1"
+         stroke-linejoin="round"
+         id="path1086" />
+    </marker>
+    <marker
+       id="arrowhead-left"
+       markerWidth="10"
+       markerHeight="10"
+       refX="2"
+       refY="3"
+       orient="auto">
+      <path
+         d="M 10,0 L 2,3 L 10,6"
+         fill="none"
+         stroke="var(--ctp-text)"
+         stroke-width="1"
+         stroke-linejoin="round"
+         id="path1089" />
+    </marker>
+  </defs>
+</svg>
