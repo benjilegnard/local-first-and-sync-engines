@@ -47,17 +47,6 @@ export const ClassicArchitecture: FunctionalComponent = () => (
             Client
         </text>
 
-        {/* Arrow from Client back */}
-        <line
-            x1="175"
-            y1="430"
-            x2="15"
-            y2="430"
-            stroke="var(--ctp-text)"
-            stroke-width={STROKE_WIDTH}
-            marker-end="url(#arrowhead-left)"
-        />
-
         {/* Back section */}
         <rect
             x="725"
@@ -71,7 +60,7 @@ export const ClassicArchitecture: FunctionalComponent = () => (
         />
         <text
             x="965"
-            y="165"
+            y="140"
             fill="var(--ctp-subtext1)"
             font-size="32"
             font-family="'Source Sans Pro', sans-serif"
@@ -88,7 +77,8 @@ export const ClassicArchitecture: FunctionalComponent = () => (
             y2="370"
             stroke="var(--ctp-text)"
             stroke-width={STROKE_WIDTH}
-            marker-end="url(#arrowhead)"
+            marker-end="url(#ca-arrowhead)"
+            marker-start="url(#ca-arrowhead-left)"
         />
 
         {/* Server box */}
@@ -103,8 +93,8 @@ export const ClassicArchitecture: FunctionalComponent = () => (
             stroke-width={STROKE_WIDTH}
         />
         <text
-            x="973.4375"
-            y="381.28125"
+            x="965"
+            y="375"
             fill="var(--ctp-text)"
             font-size="28"
             font-family="'Source Sans Pro', sans-serif"
@@ -116,7 +106,7 @@ export const ClassicArchitecture: FunctionalComponent = () => (
         {/* Arrow markers */}
         <defs>
             <marker
-                id="arrowhead"
+                id="ca-arrowhead"
                 markerWidth="10"
                 markerHeight="10"
                 refX="8"
@@ -132,7 +122,7 @@ export const ClassicArchitecture: FunctionalComponent = () => (
                 />
             </marker>
             <marker
-                id="arrowhead-left"
+                id="ca-arrowhead-left"
                 markerWidth="10"
                 markerHeight="10"
                 refX="2"

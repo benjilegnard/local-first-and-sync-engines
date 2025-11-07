@@ -1,0 +1,14 @@
+services:
+  db:
+    image: postgresql:14
+    ports: 
+      -5432:5432
+  sync:
+    image: 
+      - zero.Dockerfile
+    environment:
+    - ZERO_UPSTREAM_DB="postgresql://user:password@127.0.0.1/postgres"
+    - ZERO_REPLICA_FILE="/tmp/sync-replica.db"
+  web:
+    image: node
+

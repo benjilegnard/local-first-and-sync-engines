@@ -20,12 +20,12 @@ Notes :
 <div id="classic-architecture"></div>
 
 Notes :
-- il arrive sur les projets et on lui dit, tu va faire du front
+- il arrive sur les projets et on lui dit, tu va faire du front, ou bien tu vas faire du back.
 - il fait sa feature, en local, boume, il livre et là : bugs de partout, on peut cliquer plusieurs fois sur un bouton, son appli crashe en cas de réponse 500 du serveur.
 
 
 ### le dev web front aujourd'hui c'est l'enfer
-<img src="images/memes/npm-massive-worm.jpeg" style="max-height:50vh"/>
+<img src="images/memes/npm-massive-worm.jpeg" style="max-height:40vh"/>
 Notes :
 - bon... ceci n'est pas un talk pour cracher sur l'écosystème NPM
 - ni sur js, ni sur node.js
@@ -52,6 +52,7 @@ Notes :
 - on fait ça de base en démarrant un nouveau projet.
 - ca a des avantages, mais beaucoup de problèmes.
 - une base de données centralisée, un bon gros server spring-boot, du java, de l'angular ou du react en front
+- contraintes d'uptime, astreintes, haute disponibilité.
 
 
 ### lenteurs principalement dues au réseau, asynchronicité
@@ -71,8 +72,7 @@ Disk seek                           10,000,000   ns   10,000 us   10 ms  20x dat
 Read 1 MB sequentially from disk    20,000,000   ns   20,000 us   20 ms  80x memory, 20X SSD
 Send packet CA->Netherlands->CA    150,000,000   ns  150,000 us  150 ms
 ```
-[Latency numbers every programmer should know]
-<https://gist.github.com/jboner/2841832>
+Source: [Latency numbers every programmer should know](https://gist.github.com/jboner/2841832)
 
 
 #### Latence
@@ -103,6 +103,15 @@ Notes :
 - des centaines de milliards de petaflop de GPU dans le cloud.
 
 
+#### Rappel
+- 300ms 👀
+
+Notes :
+- on percoit la lenteur, la latence à partir d'environ ce temps
+- en dessous, on a une "impression" de rapidité
+- c'est pas parce qu'on fait des nimations à cette lenteur que vos services sont "autorisés" à prendre autant de temps  !!!
+
+
 #### Pas tout le monde il a la fibre
 - 🚃 Dans les transports<!-- .element class="fragment"-->
 - 🛜 Wifi de conférence<!-- .element class="fragment"-->
@@ -114,18 +123,9 @@ Notes :
 - 
 
 
-#### Rappel
-- 300ms 👀
-
-Notes :
-- on percoit la lenteur, la latence à partir d'environ ce temps
-- en dessous, on a une "impression" de rapidité
-- c'est pas parce qu'on fait des nimations à cette lenteur que vos services sont "autorisés" à prendre autant de temps  !!!
-
-
 ### What could go wrong ?
 
-```javascript
+```javascript [|4-6|8-20|22-23|26-29|9-11]
 import React, { useState, useEffect } from 'react'; 
 
 function DataFetchingExample() {
@@ -181,13 +181,12 @@ Notes :
 Notes :
 
 
-### Optimistic UI ?
-- Oui, mais...
-<https://stephaniewalter.design/fr/blog/tricher-grace-ux-plus-de-code-optimisable/>
-- // TODO example
+### Complexité du front
+- gestion d'erreurs possibles
+- asynchronicité / conditions de course
 Notes :
-- On a tenté de mitigier ces latences.
-- Par des pratiques UI, example, like sur twitter, direct animation, mais si échec ?
+- aujourd'hui si on a des SPA, gestion d'état et que le front web est devenu complexe
+- c'est à cause de la latence, du réseau à gérer
 
 
 ### There is no cloud
@@ -198,18 +197,10 @@ Notes :
 🏴‍☠️
 
 Notes :
-- Pourtant il y a, du moins il y aurait
+- BDD centralisées.
+- Pourtant il y a, du moins il y aurait des solutions
 - Du coup est apparu le concept principal dont je veux parler aujourd'hui
 - Le "local-first"
-
-
-### Complexité du front
-- gestion d'erreurs possibles
-- asynchronicité / conditions de course
-Notes :
-- aujourd'hui si on a des SPA, gestion d'état et que le front web est devnu
-- c'es à cause de la latence à gérer
-
 
 
 <!-- .slide: data-background-image="images/hollow-knight/bench.webp" data-background-position="center center" data-background-size="cover" --> 
@@ -219,7 +210,7 @@ Notes :
 
 
 ### Ink and switch
-<img src="public/images/qrcodes/qrcode-inkandswitch-localfirst.png" class="qrcode"/>
+<img src="images/qrcodes/qrcode-inkandswitch-localfirst.png" class="qrcode"/>
 
 Essai : [https://www.inkandswitch.com/essay/local-first/](https://www.inkandswitch.com/essay/local-first/)
 
@@ -233,7 +224,7 @@ Notes :
 
 #### 1. No spinners: work at your fingertips
 - 🛞 Pas de spinner<!-- .element class="fragment"--> 
-- 💈 Pas progress-bar<!-- .element class="fragment"-->
+- 💈 Pas barres de progress<!-- .element class="fragment"-->
 - 💀 Pas de squelettes<!-- .element class="fragment"-->
 
 
@@ -252,15 +243,15 @@ Notes :
 Notes :
 - oui, ironiquement, il y a tout ajd pour qu'une app web fonctionne hors ligne
 - `navigator.connection`
-- service worker
+- service worker: arréter de kernel panic
 
 
-<img src="image/memes/phoebe-teaching-joey-in-friends.jpg" style="max-height: 40vh"/>
+<img src="images/memes/phoebe-teaching-joey-in-friends.jpg" style="max-height: 40vh"/>
 
 
 #### 4. Seamless collaboration with your colleagues
-- Si pas de centralisation...
-- Pas de `409 Conflict`
+- Si pas de centralisation...<!-- .element class="fragment"-->
+- Pas de "409 Conflict" <!-- .element class="fragment"-->
 Notes :
 - changement de paradigme avec différence d'état
 - on considère que tout le monde a tout le temps la même version
@@ -268,11 +259,12 @@ Notes :
 
 
 #### 5. The long now
+> “The Long Now is the recognition that the precise moment you're in grows out of the past and is a seed for the future.”
 
 Notes :
 - L'idée, c'est que vous faite du code pour longtemps
-- Sur des formats qui périment pas au bout de 3 ans
-- 
+- on évite des formats qui périment pas au bout de 3 ans
+- serveur / service qui se terminent.
 
 
 #### 6. Security and privacy by default
@@ -289,14 +281,7 @@ Notes :
 - Dans la réalité...
 
 
-### Problèmes
-
-- pas très vendeur
-- on veut pouvoir collaborer, si c'est que local... bof
-- c'est là ou on veut avoir besoin...
-
-
-### Dans quel cas d'usage
+### Quels cas d'usages?
 - ✅ édition de documents/fichiers (graphes/canvas, dessins, texte, musique)<!-- .element class="fragment"-->
 - ✅ données personnelles (notes, chat, calendriers, budget, localisation)<!-- .element class="fragment"-->
 - ❌ Back office CRUD de gestion<!-- .element class="fragment"-->
@@ -311,37 +296,48 @@ Notes :
 - en vrai
 
 
+### Résumé
+1. No spinners: work at your fingertips
+2. Your work is not trapped on one device
+3. The network is optional
+4. Seamless collaboration with your colleagues
+5. The long now<span class="fragment"> (bonus)</span>
+6. Security and privacy by default<span class="fragment"> (bonus)</span>
+7. You retain ultimate ownership and control<span class="fragment"> (bonus)</span>
+Notes :
+- pour moi les 4 premiers sont indispensables à une application local-first
+- le reste c'est du bonus
+- donc, comment on va implémenter ca ?
+
+
 
 <!-- .slide: data-background-image="images/hollow-knight/hornet.jpeg" data-background-position="center center" data-background-size="cover" --> 
 ## 3. Qu'est ce que ça veut dire, et en quoi c'est différent ?
-
-
-### local-first: comment on fait ?
-
-On a vu ce que c'était maintenant, comment on implémente ?
+Notes :
+- local-first: comment on fait ?
+- On a vu ce que c'était maintenant, comment on implémente ?
 
 
 ### Un petit schéma
-<img src="schemas/local-first-software.webp" />
-
-
 <div id="local-first-software"></div>
 Notes :
 - l'idée c'est que tout tourne en local d'abord.
+- que votre logique métier de gestion / transformation de données soit dans le front
+- moins de coûts d'hébérgement cloud, votre back peut être down.
 
 
 #### Base de données locale
-- IndexedDB (natif)
-- SQLite
-- PGLite
-- Turso 🦀
-- DuckDB 🦆
-- TinyBase
-- etc...
+- IndexedDB
+- SQLite<!-- .element class="fragment"-->
+- PGLite<!-- .element class="fragment"-->
+- Turso 🦀<!-- .element class="fragment"-->
+- DuckDB 🦆<!-- .element class="fragment"-->
+- TinyBase<!-- .element class="fragment"-->
+- etc...<!-- .element class="fragment"-->
 Notes :
 - BDD qui tourne dans votre navigateur
 - en WASM pour les deux derniers
-- y'en asurement plein d'autres
+- y'en asurement plein d'autres, j'ai pas la science infuse.
 
 
 #### But why?
@@ -354,45 +350,101 @@ Notes :
 - simplicité
 
 
-#### Sync Database
+#### Live queries
+<img src="schemas/live-queries.webp" style="max-height:40vh" />
+
+- IndexedDB (DexieJs with liveQuery)
+- Postgres (PgLite's live queries)
+- SQLite (using WASM and something like wa-sqlite)
+
+
+#### Live queries (exemple dexie)
+```typescript [|6-8|14-19]
+import { useLiveQuery } from "dexie-react-hooks";
+import { db } from "./db";
+
+export function FriendList() {
+  // Automatically re-renders when data changes ⚡️
+  const friends = useLiveQuery(() =>
+    db.friends.where("age").between(50, 75).toArray()
+  );
+
+  return (
+    <>
+      <h2>Friends</h2>
+      <ul>
+        {friends?.map((friend) => (
+          <li key={friend.id}>
+            {friend.name}, {friend.age}
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+}
+```
+Notes :
+- mises à jour automatique de la vue en fonction de la DB
+- bon c'est cool, mais si j'ai des données locales
+- ce qu'on va vouloir aujourd'hui c'est synchronizer, collaborer autour de ces données.
+- pour ça y'a plein de solutions.
+
+
+#### Sync Databases / Real Time Databases
 - Supabase
 - Firebase
 - InstantDB
-- PouchDB + CouchDB
+- PouchDB + CouchDB + RxDB
 - Triplit
 - Fireproof
 - Livestore
 - etc...
 Notes :
-- ou service paas/saas
+- ou service paas/saas (mélange tout, temps réel)
+- surtout ca suffit pas d'avoir une base de données locale (autant faire du client lourd)
+- on veut quelle se synchronize toute seule entre les clients
+- c'est là qu'on va avoir besoin d'un moteur de synchro
+
+
+#### Sync engine, introduction
+<img src="schemas/local-only-with-sync-engine-for-remote-storage.webp" />
+Notes :
+- synchronize les données de tous les clients tout en leur permettant d'écrire localement
+- chaque client ne s'occupe que de ses données, souvent dans un périmètre restreint
+- le moteur s'occupe de s'assurer que tout est tout le temps à jour.
+- tourne en tâche de fond
 
 
 #### Service Worker
+- ⚙️ Tourne en tâche de fond
+- 🔄 Push / Pull
+- 🔌 WebSocket
+
 Notes :
-- thread local on va dire
-- permets d'intercepter des requêtes http d'assets et :
+- thread local on va dire, évite de bloquer le rendu principal
+- permets d'intercepter des requêtes http d'assets et
 - les pré-charger, les mettres en cache.
+- et surtout, faire tourner en tâche de fond notre synchronisation de base.
+- la vous voyez service worker, les sachants viendront me dire, mais c'est une PWA en fait
+
+
+####  Sync + websockets
+<img src="schemas/web-worker-with-web-socket-connection-in-sync-engine.webp"/>
 
 
 #### et les PWA alors ?
+- c'est pas un pré-requis, mais un peu quand même.
+
+<https://whatpwacando.today/>
+
+<img class="qrcode" src="images/qrcodes/whatpwacando.png" />
 Notes :
 - les deux supporte un mode offline
 - pas indispensable, mais très pratique
+- vous pouvez faire du local-first sans être une PWA et inversement.
 - mode connecté / déconnecté
-- notifications natives
+- notifications natives et autres accès au device goodies.
 - on reste sur des appels api en cache
-
-
-### 3.2 sync engine : qu'est-ce que c'est ?
-- 🧩 la pièce manquante à notre puzzle<!-- .element class="fragment"-->
-- 🔄 Synchronise IHM & BDD<!-- .element class="fragment"-->
-- 🧙 Magic!<!-- .element class="fragment"-->
-
-
-### la logique est côté front, plus de serveur "intelligents", le back sert à synchroniser uniquement
-
-
-### différentes approches pour un même but: agir d'abord, synchronizer ensuite
 
 
 
@@ -400,13 +452,18 @@ Notes :
 ## 4. Notre héros galère, mais va s'adapter
 
 Notes :
-- de nouveaux problèmes apparaissent, quelles solutions existent ? ( ~ 7 minutes )
+- bref on a aborder le sujet 1 du local-first, et j'en viens donc au deuxième sujet, le moteur de synchronisation
+- parce que c'est cool d'avoir nos données locale, mais sinon autrement faire du client lourd plutôt que webapp.
 
 
-### Un moteur de synchronisation
-
-Notes:
-- les devs, vous en utilisez un tous les jours.
+### sync-engine : qu'est-ce que c'est ?
+- 🧩 la pièce manquante à notre puzzle<!-- .element class="fragment"-->
+- 🔄 Synchronise IHM & BDD client comme serveur<!-- .element class="fragment"-->
+- 🧙 AutoMagic!<!-- .element class="fragment"-->
+Notes :
+- ou moteur de synchronisation dans la langue de molière 
+- automagique dans le bon sens, ca fait le taf pour vous, plus besoin d'y penser.
+- parce qu'on veut que chaque utilisateur ait ses données, mais souvent re-partager aux autres.
 
 
 ### Qui utilise ça déjà ?
@@ -416,21 +473,40 @@ Notes:
 - Figma
 - Linear
 - Google Docs
-
-
-### expérimentations
-
-
-### le classique du distribué : comment résoudre les conflits
-```
-// TODO implement the conflictHandler() method
-```
 Notes :
-- pour le coup c'est un vrai todo,
-- en mode certaines solutions vous demande d'implémenter ça
+- liste non exhaustive
+- sous une forme ou une autres ces applis là utilise la synchro
+
+
+### Un moteur de synchronisation
+- si vous faites du dev, vous en utilisez un tous les jours déjà.
+Notes :
+- les devs, vous en utilisez un tous les jours.
 
 
 ### Git
+<div id="git-graph"></div>
+Notes :
+- considérons que la branche principal c'est notre état serveur, ou notre état partagé
+- la branche feature ca va être l'état des données d'un client déconnecté 
+- à un moment il va falloir fusionner.
+
+
+### Problème: consistence des données.
+<img src="images/memes/merge-conflicts.jpeg" />
+Notes :
+- avec git, c'est à vous de résoudre les conflits potentiels
+- git a sa structure de données qui stocke les changements
+
+
+### Comment résoudre les conflits ?
+```typescript
+// TODO implement the conflictHandler() method
+```
+Notes :
+- pour le coup c'est un vrai todo, tiré d'une lib que je ne citerais pas.
+- en mode certaines solutions vous demande d'implémenter ça : démerdez vous.
+- la plupart des moteurs utilisent et vous impose d'utiliser des CRDT
 
 
 ### CRDT 
@@ -443,12 +519,19 @@ Notes :
 - l'idée c'est qu'au niveau du modèle de donnée, la résolution de conflits va être automatique
 
 
-### Yjs
+### CRDT: propriétés
+- mise à jour concurrente sans coordination
+- alogrithme de résolution de conflits automatique
+- cohérence éventuelle
+Notes :
+- sans coord avec une autorité centrale
+- algorithme propre au type de donnée
+- il y a plusieurs librairies en JS qui permettent d'implémenter un CRDT, je vais juste en présenter une.
 
 
 ### Example de CRDT avec Yjs
 
-```typescript
+```typescript[|1|3-8|10-14|16-18|20-21]
 import * as Y from 'yjs'
 
 // Yjs documents are collections of
@@ -473,33 +556,78 @@ console.log(ymap.toJSON()) // => { keyA: 'valueA', keyB: 'valueB' }
 ```
 
 
-### décentralisation, réplication etc...
+### data types (automerge)
+Composite types
+- Maps
+- List
+- Text
+
+Scalar (non-composite) types:
+- IEEE 754 64 bit floating point numbers
+- Unsigned integers
+- Signed integers
+- Booleans
+- Strings
+- Timestamps
+- Counters
+- Byte arrays
+Notes :
+- souvent vous allez passer dans le CRDT des types de données custom
+- ca va permettre au CRDT de gérer lui même la résolution conflit finement
+
+
+### Sérialisation
+
+- déclarer vos types avec une API.
+- validation au runtime
+- sérialisation (UINT8Array)
 
 Notes :
+- le CRDT va souvent s'occuper ausssi de sérialisation
+- certains de valider au runtime le type
+- avantages taille réduite.
+
+
+### Bref,
+
+Notes :
+- la combinaison de tout ça permet aux moteur de synchronisation
+- de gérer la synchronisation en temps réel de vos données.
+- en ligne comme hors ligne
+
+
+### Offline mode
+- stale mode
+Notes :
+- en gros le moteur gérer un état de vos données, synchro /stale 
 - 
+
 
 
 <!-- .slide: data-background-image="images/hollow-knight/bench-crooked.jpeg" data-background-position="center center" data-background-size="cover" --> 
 ## 5. Les péripéties
 Notes :
 Notre héros rencontre des péripéties, différentes implémentations, comparatifs de solutions existantes pour arriver à notre but.  ( ~ 10 minutes )
+- J'ai essayé de pas être trop spécifique à une seule lib dans ce talk, parce qu'en vrai il y a du choix
 
 
-### bases de données
+### Bases de données
 
 - indexedDB + pouchdb
 - rxdb + couchdb + pouchdb
 - electric sql
 - fireproof
 - orbitDB 
+- postgresql + sync engine devant
 
 
-### conflict free data-types (CRDT): Yjs / automerge
+### conflict free replicated data-types (CRDT).
 - Yjs
 - automerge
+- Loro
 
 
-### sync engines
+### Sync Engines
 - zero
 - replicache 
 - electricSQL
@@ -507,6 +635,7 @@ Notre héros rencontre des péripéties, différentes implémentations, comparat
 - Powersync
 - Evolu
 - Ditto
+- Convex
 - etc...
 Notes :
 - J'ai pas tout testé, voir encore rien du tout, juste zero me plait
@@ -519,11 +648,11 @@ Notes :
 [https://zero.rocicorp.dev/](https://zero.rocicorp.dev/)
 
 Notes :
-- // TODO qrcode + logo
+- // TODO qrcode
 
 
 #### Show us the code!
-```typescript
+```typescript [|5-13|15-20|27-31]
 function Playlist({id}: {id: string}) {
   // This usually resolves *instantly*, and updates reactively
   // as server data changes. Just wire it directly to your UI –
@@ -600,28 +729,27 @@ Notes :
 - , notre héros galère pour atteindre son but  ( ~ 5 minutes )
 
 
-### changement de paradigme
+### Changement de paradigme
 <img src="schemas/data-fetching.png"/>
 
 
-<div id="data-fetching"></div>
-
-
+### Changement de paradigme (2)
+<!-- <div id="data-fetching"></div>-->
 <img src="schemas/data-sync.png"/>
+<!--<div id="data-sync"></div>-->
 
 
-<div id="data-sync"></div>
-
-
-### MPA / SPA / PWA / local-first
+### MPA => SPA => PWA => SPA+SSR => local-first
 Notes :
 - déjà un paradigme en ce moment
+- ce sera pas le premier ni le dernier changement paradigme dans notre métier
 
 
 ### Intérêts vs coûts d'implémentation.
 Notes :
 - faut pas se leurre, la plupart de nos clients vont pas en voir l'intérêt
-- 
+- on est plus dans une course au cloud ajd
+- par contre côté utilisateurs, c'est ce qu'on veut.
 
 
 ### et la sécurité dans tout ça ?
@@ -630,9 +758,8 @@ Notes :
 - pas encore creusé, mais elle est à implémenter au niveau du serveur de syncro moteur
 
 
-### Optimistic Reads & Writes
-- write to local device first ?
-- write to cloud first ?
+### Authentification
+- sur le long terme
 
 
 ### Authorité serveur vs décentralisation ?
@@ -642,27 +769,24 @@ Notes :
 - jazz ditto evolu
 
 
-### et si je veux une API
+### Et si je veux une API ?
+
 Notes :
 - en gros votre API est un client du moteur de synchronization
 - déplacé côté serveur, nécéssite de code isomorphique/universel
 
 
-### oui, mais si on danse ?
+### Oui, mais si on danse ?
+= quand ne pas utiliser
 - si besoin d'autorité centrale
-- 
+- si un vrai besoin de temps réel
 Notes :
 - ( Il n'y a pas de balles en argent = quand ne pas l'utiliser )
-- 
 
 
 
 <!-- .slide: data-background-image="images/hollow-knight/blue-lake.webp" data-background-position="center center" data-background-size="cover" -->
 ## 7. Retour à la situation initiale
-
-
-### Démonstration / POC.
-Pas aujourd'hui.
 
 
 ### Pourquoi c'est bien tout ça ?
@@ -673,35 +797,46 @@ Pas aujourd'hui.
 
 ### C'est toujours des webapps
 - on reste sur du web (js/html/css)
-- webap mobile 
+- webapp mobile 
 
 
-### Juste la manière d'interagir au niveau client serveur n'est plus du tout la même
+### Bénéfices
 - pas de loaders!
 - pas d'asynchrone dans le code métier!
+- réduction coûts cloud
 
 
 ### Move logic to the frontend
+- le back sert à synchroniser et autoriser uniquement
 Notes :
 - je vais me prendre des tomates.
 - Mais c'est une bonne chose.
 - on peut prototyper rapidement sans ce soucier de l'hosting / database dans un premier temps.
 - arrêtons de siloter devs back vs devs front, faites tout dans le même language = le bonheur
+- bref différentes approches pour un même but: agir d'abord, synchronizer ensuite
+
 
 
 <!-- .slide: data-background-image="images/hollow-knight/colloseum-arena.webp" data-background-position="center center" data-background-size="cover" -->
 ## 8. Conclusion
 
 Notes :
-- est-ce que ça va changer le développement web et mobile ? (~= 3 minutes) 
-- local first et sync engines, deux concepts différents, mais reliés
-- ensemble on est plus fort
 - 7 idéals du local -first, controversé
+- local first et sync engines, deux concepts différents, mais reliés
+- est-ce que ça va changer le développement web et mobile ?
+- ensemble on est plus fort
 - sync engines va peut-être devenir le nouveau défaut (pas mme irma)
 
 
-### gneugneu, ça existait déjà.
-- Oui, mais...
+### gneugneu, "ça existait déjà". Oui.
+
+- Lotus Notes (1989)
+- Microsoft Exchange (1996)
+- Google Docs (2006)
+- Dropbox (2007)
+- Figma (2016)
+- Superhuman (2017)
+- Linear (2019)
 
 Notes :
 - dans des cas de niche (mon premier vrai projet pwa / mobile => implémentait lui même la sync)
@@ -716,28 +851,38 @@ Notes :
 #### Ecosystème
 <https://www.localfirst.fm/landscape>
 
-<img class="qrcode" src="images/qrcodes
+<img class="qrcode" src="images/qrcodes/localfirst-landscape.png"/>
+
+<iframe 
+    src="https://www.localfirst.fm/landscape#3gADsGNvbHVtblZpc2liaWxpdHneAAKsR2VuZXJhbF9OYW1lwqxSQU5ET01fT1JERVLCrWNvbHVtbkZpbHRlcnOQp3NvcnRpbmeR3gAComlkrFJBTkRPTV9PUkRFUqRkZXNjwg=="
+    width="1280" 
+    height="720"
+></iframe>
+Notes :
+- avant il fallait implémenter vous même tout 
+- aujourd'hui un écosystème existe pour fournir le service par défaut 
+- de la même manière qu'on a eu des fwk qui faisaient du SPA par défaut, puis du SSr par défaut, puis de l'hydratation par défaut, je pense qu'on arrive à une ère ou les fwk vont faire du local-first par défaut.
 
 
 #### Adoption
 <img src="images/local-first-popularity.jpeg" />
 
 
-### La complexité
-- Devrait être abstraite par vos fwk.
-- Pas dans vos serveurs.
+### La complexité technique
+- Devrait être abstraite par vos framework & librairies.
+- Pas dans vos serveurs. Pas dans le code applicatif.
 
 
 ### Inconvénients
-- résoudre des conflits, reste un problème compliqué
-- applications distribuées : modèle mental
-- limites dans les choix d'hébergeurs
-- vendor-lock / sticky
+- résoudre des conflits
+- applications distribuées
+- vendor-locking
 Notes :
 - pas de balle en argent
-
-
-
+- résoudre des conflits, reste un problème compliqué
+- applications distribuées : modèle mental compliqué
+- limites dans les choix d'hébergeurs
+- vendor-lock / sticky
 
 
 ### Agentique Sync ?
@@ -747,7 +892,7 @@ Notes :
 ### Au minimum, pensons-y.
 Notes :
 - essayez, passez une partie de vos applis dessus.
-- en mode POC.
+- faites des POC, testez ça vous même
 
 
 ### Votre serviteur
@@ -760,8 +905,15 @@ Notes :
 Notes :
 - je m'appelle..
 - RS
--
 
+
+### Remerciements
+- Sandro Maglione (@SandroMaglione)
+- Cory House (@housecor)
+- Aaron Boodman (@aboodman)
+
+Notes :
+- remerciement à ses gens pour leurs articles et leurs discussions sur twitter sans qui j'aurais personnellement jamais découvert le sujet
 
 
 <!-- .slide: data-background-image="images/hollow-knight/thanks.jpeg" data-background-position="center center" data-background-size="cover" -->
@@ -770,12 +922,13 @@ Notes :
 😘 Et jouez à Hollow Knight / Silksong
 
 
-## Slides / Feedback
+## Feedback / Slides
 
 <div class="row">
 <a>
 Feedback :<br/>
 <img src="images/qrcodes/bdxio-openfeedback.png" /></a>
+    @benjilegnard
 <a>
 Slides :<br/>
 <img src="images/qrcodes/slides-on-github.png" /></a>

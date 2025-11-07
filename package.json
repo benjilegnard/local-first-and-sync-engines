@@ -17,15 +17,15 @@
     "@catppuccin/highlightjs": "^1.0.1",
     "@catppuccin/palette": "^1.7.1",
     "@preact/preset-vite": "^2.10.2",
-    "@types/reveal.js": "^5.2.0",
+    "@types/reveal.js": "^5.2.1",
     "prettier": "^3.6.2",
-    "sass": "^1.90.0",
-    "typescript": "^5.9.2",
-    "vite": "^7.1.2"
+    "sass": "^1.93.3",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.0"
   },
   "dependencies": {
-    "@preact/signals": "^2.2.1",
-    "preact": "^10.27.0",
+    "@preact/signals": "^2.3.2",
+    "preact": "^10.27.2",
     "reveal.js": "^5.2.1"
   }
 }

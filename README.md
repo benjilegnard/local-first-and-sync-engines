@@ -27,6 +27,8 @@ Ensemble, nous verrons les grands principes du local-first, qu'est-ce qu'un mote
 Conférence sélectionnée à :
 
 - BDX/IO le 7 novembre 2025.
+- Codeurs en Seine le 21 novembre 2025.
+- Snowcamp à Grenoble le  14-16 février 2026
 
 ## Slides 
 

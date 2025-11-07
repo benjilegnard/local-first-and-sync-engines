@@ -15,6 +15,7 @@ import { LocalFirstSoftware } from "./slides/local-first-software";
 import { DataFetching } from "./slides/data-fetching";
 import { DataSync } from "./slides/data-sync";
 import { CloudFirstSoftware } from "./slides/cloud-first-software";
+import { GitGraph } from "./slides/git-graph";
 
 let deck = new Reveal({
     plugins: [Markdown, Notes, Highlight],
@@ -30,12 +31,13 @@ const components: Record<string, ComponentChild> = {
     "local-first-software": LocalFirstSoftware,
     "data-fetching": DataFetching,
     "data-sync": DataSync,
+    "git-graph": GitGraph,
 };
 
 deck
     .initialize({
         progress: false,
-        controls: true,
+        controls: false,
         slideNumber: "c/t",
         showSlideNumber: "speaker",
         hashOneBasedIndex: true,
@@ -48,18 +50,16 @@ deck
     })
     .then(() => {
         // Wait for markdown to be parsed
-        setTimeout(() => {
-            // initialize preact components in slides
-            Object.keys(components).forEach((id) => {
-                const element = document.getElementById(id);
-                if (!element) {
-                    console.warn(`Element with id ${id} is missing!`);
-                    return;
-                }
-                const Component = components[id] as any;
-                render(<Component />, element);
-            });
-        }, 100);
+        // initialize preact components in slides
+        Object.keys(components).forEach((id) => {
+            const element = document.getElementById(id);
+            if (!element) {
+                console.warn(`Element with id ${id} is missing!`);
+                return;
+            }
+            const Component = components[id] as any;
+            render(<Component />, element);
+        });
 
         Reveal.on('slidechanged', (event) => {
             console.log("slidechanged", event);
