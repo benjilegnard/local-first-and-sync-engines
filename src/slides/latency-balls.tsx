@@ -9,6 +9,7 @@ interface Ball {
     latency: number;
     label: string;
     color: string;
+    active: boolean;
 }
 
 const LATENCIES = [
@@ -19,13 +20,15 @@ const LATENCIES = [
     { ns: 100000, label: "SSD", color: "var(--ctp-red)" },
 ];
 
+const POOL_SIZE = 200;
+
 /**
  * Show the cpu to cache latency with bouncing balls.
  */
 export const LatencyBalls: FunctionalComponent = () => {
     const [timeScale, setTimeScale] = useState(1000000); // Default: 1M times slower
-    const [balls, setBalls] = useState<Ball[]>([]);
-    const ballIdCounter = useRef(0);
+    const [, forceUpdate] = useState(0);
+    const ballPool = useRef<Ball[]>([]);
     const lastSpawnTimes = useRef<Record<string, number>>({});
     const animationFrame = useRef<number>();
 
@@ -34,9 +37,27 @@ export const LatencyBalls: FunctionalComponent = () => {
     const BALL_RADIUS = 8;
     const TARGET_X = 1100;
 
+    // Initialize object pool once
     useEffect(() => {
+        ballPool.current = Array.from({ length: POOL_SIZE }, (_, i) => ({
+            id: i,
+            x: 0,
+            target: 0,
+            latency: 0,
+            label: "",
+            color: "",
+            active: false,
+        }));
+    }, []);
+
+    useEffect(() => {
+        // Deactivate all balls when timeScale changes
+        ballPool.current.forEach(ball => ball.active = false);
+        lastSpawnTimes.current = {};
+
         const animate = () => {
             const currentTime = Date.now();
+            let needsUpdate = false;
 
             // Spawn new balls based on latency frequencies
             LATENCIES.forEach((latency, index) => {
@@ -44,28 +65,41 @@ export const LatencyBalls: FunctionalComponent = () => {
                 const intervalMs = (latency.ns / 1000000) * timeScale; // Convert ns to ms with scale
 
                 if (currentTime - lastSpawn >= intervalMs) {
-                    const targetY = 150 + index * 100;
-                    setBalls(prev => [...prev, {
-                        id: ballIdCounter.current++,
-                        x: CPU_X,
-                        target: targetY,
-                        latency: latency.ns,
-                        label: latency.label,
-                        color: latency.color,
-                    }]);
-                    lastSpawnTimes.current[latency.label] = currentTime;
+                    // Find inactive ball in pool
+                    const ball = ballPool.current.find(b => !b.active);
+                    if (ball) {
+                        const targetY = 150 + index * 100;
+                        ball.active = true;
+                        ball.x = CPU_X;
+                        ball.target = targetY;
+                        ball.latency = latency.ns;
+                        ball.label = latency.label;
+                        ball.color = latency.color;
+                        lastSpawnTimes.current[latency.label] = currentTime;
+                        needsUpdate = true;
+                    }
                 }
             });
 
             // Update ball positions
-            setBalls(prev => prev
-                .map(ball => {
-                    const speed = (1000 / timeScale) * (TARGET_X - CPU_X) / (ball.latency / 1000000);
-                    const newX = ball.x + speed / 60; // 60fps
-                    return { ...ball, x: newX };
-                })
-                .filter(ball => ball.x < TARGET_X + 50) // Remove balls that reached the end
-            );
+            for (let i = 0; i < ballPool.current.length; i++) {
+                const ball = ballPool.current[i];
+                if (!ball.active) continue;
+
+                const speed = (1000 / timeScale) * (TARGET_X - CPU_X) / (ball.latency / 1000000);
+                ball.x += speed / 60; // 60fps
+
+                if (ball.x >= TARGET_X + 50) {
+                    ball.active = false;
+                    needsUpdate = true;
+                } else {
+                    needsUpdate = true;
+                }
+            }
+
+            if (needsUpdate) {
+                forceUpdate(prev => prev + 1);
+            }
 
             animationFrame.current = requestAnimationFrame(animate);
         };
@@ -114,7 +148,8 @@ export const LatencyBalls: FunctionalComponent = () => {
             })}
 
             {/* Animated balls */}
-            {balls.map(ball => {
+            {ballPool.current.map(ball => {
+                if (!ball.active) return null;
                 const progress = (ball.x - CPU_X) / (TARGET_X - CPU_X);
                 const y = START_Y + (ball.target - START_Y) * progress;
                 return (
