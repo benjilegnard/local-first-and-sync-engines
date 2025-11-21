@@ -21,10 +21,11 @@ Notes :
 
 Notes :
 - il arrive sur les projets et on lui dit, tu va faire du front, ou bien tu vas faire du back.
-- il fait sa feature, en local, boume, il livre et là : bugs de partout, on peut cliquer plusieurs fois sur un bouton, son appli crashe en cas de réponse 500 du serveur.
+- il fait sa feature, en local, boume, il livre et là : bugs de partout, c'est lent, on peut cliquer plusieurs fois sur un bouton, son appli crashe en cas de réponse 500 du serveur.
+- bon bref, trève de story telling.
 
 
-### le dev web front aujourd'hui c'est l'enfer
+### Le dev web front aujourd'hui c'est l'enfer
 <img src="images/memes/npm-massive-worm.jpeg" style="max-height:40vh"/>
 Notes :
 - bon... ceci n'est pas un talk pour cracher sur l'écosystème NPM
@@ -927,7 +928,7 @@ Notes :
 <div class="row">
 <a>
 Feedback :<br/>
-<img src="images/qrcodes/bdxio-openfeedback.png" /></a>
+<img src="images/qrcodes/feedback-codeurs-en-seine.png" /></a>
     @benjilegnard
 <a>
 Slides :<br/>
