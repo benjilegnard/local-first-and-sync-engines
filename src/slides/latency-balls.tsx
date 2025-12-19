@@ -10,6 +10,7 @@ interface Ball {
     label: string;
     color: string;
     active: boolean;
+    element: SVGCircleElement | null;
 }
 
 const LATENCIES = [
@@ -27,8 +28,8 @@ const POOL_SIZE = 200;
  */
 export const LatencyBalls: FunctionalComponent = () => {
     const [timeScale, setTimeScale] = useState(1000000); // Default: 1M times slower
-    const [, forceUpdate] = useState(0);
     const ballPool = useRef<Ball[]>([]);
+    const ballGroupRef = useRef<SVGGElement>(null);
     const lastSpawnTimes = useRef<Record<string, number>>({});
     const animationFrame = useRef<number>();
 
@@ -37,27 +38,41 @@ export const LatencyBalls: FunctionalComponent = () => {
     const BALL_RADIUS = 8;
     const TARGET_X = 1100;
 
-    // Initialize object pool once
+    // Initialize object pool and DOM elements once
     useEffect(() => {
-        ballPool.current = Array.from({ length: POOL_SIZE }, (_, i) => ({
-            id: i,
-            x: 0,
-            target: 0,
-            latency: 0,
-            label: "",
-            color: "",
-            active: false,
-        }));
+        if (!ballGroupRef.current) return;
+
+        ballPool.current = Array.from({ length: POOL_SIZE }, (_, i) => {
+            // Create SVG circle element
+            const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            circle.setAttribute("r", String(BALL_RADIUS));
+            circle.setAttribute("stroke", "none");
+            circle.style.display = "none";
+            ballGroupRef.current!.appendChild(circle);
+
+            return {
+                id: i,
+                x: 0,
+                target: 0,
+                latency: 0,
+                label: "",
+                color: "",
+                active: false,
+                element: circle,
+            };
+        });
     }, []);
 
     useEffect(() => {
         // Deactivate all balls when timeScale changes
-        ballPool.current.forEach(ball => ball.active = false);
+        ballPool.current.forEach(ball => {
+            ball.active = false;
+            if (ball.element) ball.element.style.display = "none";
+        });
         lastSpawnTimes.current = {};
 
         const animate = () => {
             const currentTime = Date.now();
-            let needsUpdate = false;
 
             // Spawn new balls based on latency frequencies
             LATENCIES.forEach((latency, index) => {
@@ -67,7 +82,7 @@ export const LatencyBalls: FunctionalComponent = () => {
                 if (currentTime - lastSpawn >= intervalMs) {
                     // Find inactive ball in pool
                     const ball = ballPool.current.find(b => !b.active);
-                    if (ball) {
+                    if (ball && ball.element) {
                         const targetY = 150 + index * 100;
                         ball.active = true;
                         ball.x = CPU_X;
@@ -75,30 +90,30 @@ export const LatencyBalls: FunctionalComponent = () => {
                         ball.latency = latency.ns;
                         ball.label = latency.label;
                         ball.color = latency.color;
+                        ball.element.setAttribute("fill", latency.color);
+                        ball.element.style.display = "";
                         lastSpawnTimes.current[latency.label] = currentTime;
-                        needsUpdate = true;
                     }
                 }
             });
 
-            // Update ball positions
+            // Update ball positions via direct DOM manipulation
             for (let i = 0; i < ballPool.current.length; i++) {
                 const ball = ballPool.current[i];
-                if (!ball.active) continue;
+                if (!ball.active || !ball.element) continue;
 
                 const speed = (1000 / timeScale) * (TARGET_X - CPU_X) / (ball.latency / 1000000);
                 ball.x += speed / 60; // 60fps
 
                 if (ball.x >= TARGET_X + 50) {
                     ball.active = false;
-                    needsUpdate = true;
+                    ball.element.style.display = "none";
                 } else {
-                    needsUpdate = true;
+                    const progress = (ball.x - CPU_X) / (TARGET_X - CPU_X);
+                    const y = START_Y + (ball.target - START_Y) * progress;
+                    ball.element.setAttribute("cx", String(ball.x));
+                    ball.element.setAttribute("cy", String(y));
                 }
-            }
-
-            if (needsUpdate) {
-                forceUpdate(prev => prev + 1);
             }
 
             animationFrame.current = requestAnimationFrame(animate);
@@ -147,16 +162,8 @@ export const LatencyBalls: FunctionalComponent = () => {
                 );
             })}
 
-            {/* Animated balls */}
-            {ballPool.current.map(ball => {
-                if (!ball.active) return null;
-                const progress = (ball.x - CPU_X) / (TARGET_X - CPU_X);
-                const y = START_Y + (ball.target - START_Y) * progress;
-                return (
-                    <circle key={ball.id} cx={ball.x} cy={y} r={BALL_RADIUS}
-                        fill={ball.color} stroke="none" />
-                );
-            })}
+            {/* Animated balls - DOM elements are created and managed directly */}
+            <g ref={ballGroupRef} />
 
             {/* Time scale control label */}
             <text x="640" y="680" fill="var(--ctp-text)" font-size="20"

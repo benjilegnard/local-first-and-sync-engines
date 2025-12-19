@@ -1,5 +1,5 @@
 import { FunctionalComponent } from "preact";
-import { useEffect, useState, useRef } from "preact/hooks";
+import { useEffect, useRef } from "preact/hooks";
 import { SvgContainer } from "../components/svg-container";
 import { WORLD_MAP_PATH } from "../constants/world-map-path";
 
@@ -21,6 +21,7 @@ interface Ball {
     connectionIndex: number;
     progress: number;
     active: boolean;
+    element: SVGCircleElement | null;
 }
 
 const CITIES: Record<string, City> = {
@@ -81,27 +82,39 @@ const POOL_SIZE = 300;
  * Show the network latency on a world map with bouncing balls.
  */
 export const NetworkBalls: FunctionalComponent = () => {
-    const [, forceUpdate] = useState(0);
     const ballPool = useRef<Ball[]>([]);
+    const ballGroupRef = useRef<SVGGElement>(null);
     const lastSpawnTimes = useRef<Record<number, number>>({});
     const animationFrame = useRef<number>();
 
     const TIME_SCALE = 20; // Constant time scale
 
-    // Initialize object pool once
+    // Initialize object pool and DOM elements once
     useEffect(() => {
-        ballPool.current = Array.from({ length: POOL_SIZE }, (_, i) => ({
-            id: i,
-            connectionIndex: 0,
-            progress: 0,
-            active: false,
-        }));
+        if (!ballGroupRef.current) return;
+
+        ballPool.current = Array.from({ length: POOL_SIZE }, (_, i) => {
+            // Create SVG circle element
+            const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            circle.setAttribute("r", "4");
+            circle.setAttribute("fill", "var(--ctp-yellow)");
+            circle.setAttribute("stroke", "none");
+            circle.style.display = "none";
+            ballGroupRef.current!.appendChild(circle);
+
+            return {
+                id: i,
+                connectionIndex: 0,
+                progress: 0,
+                active: false,
+                element: circle,
+            };
+        });
     }, []);
 
     useEffect(() => {
         const animate = () => {
             const currentTime = Date.now();
-            let needsUpdate = false;
 
             // Spawn new balls for each connection
             CONNECTIONS.forEach((connection, index) => {
@@ -111,20 +124,20 @@ export const NetworkBalls: FunctionalComponent = () => {
                 if (currentTime - lastSpawn >= intervalMs) {
                     // Find inactive ball in pool
                     const ball = ballPool.current.find(b => !b.active);
-                    if (ball) {
+                    if (ball && ball.element) {
                         ball.active = true;
                         ball.connectionIndex = index;
                         ball.progress = 0;
+                        ball.element.style.display = "";
                         lastSpawnTimes.current[index] = currentTime;
-                        needsUpdate = true;
                     }
                 }
             });
 
-            // Update ball positions
+            // Update ball positions via direct DOM manipulation
             for (let i = 0; i < ballPool.current.length; i++) {
                 const ball = ballPool.current[i];
-                if (!ball.active) continue;
+                if (!ball.active || !ball.element) continue;
 
                 const connection = CONNECTIONS[ball.connectionIndex];
                 const speed = 0.001 / TIME_SCALE * connection.latencyMs;
@@ -132,14 +145,14 @@ export const NetworkBalls: FunctionalComponent = () => {
 
                 if (ball.progress >= 1) {
                     ball.active = false;
-                    needsUpdate = true;
+                    ball.element.style.display = "none";
                 } else {
-                    needsUpdate = true;
+                    const from = CITIES[connection.from];
+                    const to = CITIES[connection.to];
+                    const pos = getPointOnCurve(from, to, ball.progress);
+                    ball.element.setAttribute("cx", String(pos.x));
+                    ball.element.setAttribute("cy", String(pos.y));
                 }
-            }
-
-            if (needsUpdate) {
-                forceUpdate(prev => prev + 1);
             }
 
             animationFrame.current = requestAnimationFrame(animate);
@@ -192,25 +205,8 @@ export const NetworkBalls: FunctionalComponent = () => {
                 );
             })}
 
-            {/* Animated balls */}
-            {ballPool.current.map(ball => {
-                if (!ball.active) return null;
-                const connection = CONNECTIONS[ball.connectionIndex];
-                const from = CITIES[connection.from];
-                const to = CITIES[connection.to];
-                const pos = getPointOnCurve(from, to, ball.progress);
-
-                return (
-                    <circle
-                        key={ball.id}
-                        cx={pos.x}
-                        cy={pos.y}
-                        r="4"
-                        fill="var(--ctp-yellow)"
-                        stroke="none"
-                    />
-                );
-            })}
+            {/* Animated balls - DOM elements are created and managed directly */}
+            <g ref={ballGroupRef} />
 
             {/* City markers */}
             {Object.values(CITIES).map(city => (
