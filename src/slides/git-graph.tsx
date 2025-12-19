@@ -9,10 +9,6 @@ interface Commit {
     label: string;
 }
 
-interface BranchLine {
-    points: string;
-}
-
 /**
  * Git graph visualization showing branch merge with Catppuccin colors
  */
