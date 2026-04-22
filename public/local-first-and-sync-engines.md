@@ -934,12 +934,13 @@ Notes :
 ## Feedback / Slides
 
 <div class="row">
-<a href="https://openfeedback.io/nIlFquxGUZ1IJ1cDkc1z/2026-02-13/cmfz7neh8001o1enve10obqb4" target="_blank">
+<a href="https://m.devoxx.com/events/devoxxfr2026/talks/26845/localfirst-et-syncengines-larchitecture-du-futur-" target="_blank">
 Feedback :<br/>
-<img src="images/qrcodes/qrcode-touraine-tech-2026.png" />
+<img src="images/qrcodes/qrcode-devoxx-france-2026.png" />
 <a>
 <div class="col">
-    <img src="images/logo-touraine-tech.svg" alt="Touraine Tech 2026"/>
+    <img src="images/logo-devoxx-france-noir.svg" alt="Logo Devoxx France 2026" class="light-theme" />
+    <img src="images/logo-devoxx-france-blanc.svg" alt="Logo Devoxx France 2026" class="dark-theme" />
     <br/><br/>
     @benjilegnard
 </div>

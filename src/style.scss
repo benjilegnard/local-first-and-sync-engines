@@ -238,3 +238,24 @@ img.qrcode {
 // CSS @import supports media queries
 @import url("@catppuccin/highlightjs/css/catppuccin-latte.css") (prefers-color-scheme: light);
 @import url("@catppuccin/highlightjs/css/catppuccin-mocha.css") (prefers-color-scheme: dark);
+
+
+@media (prefers-color-scheme: light) {
+  .dark-theme {
+    display: none;
+  }
+
+  .light-theme {
+    display: block;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .dark-theme {
+    display: block;
+  }
+
+  .light-theme {
+    display: none;
+  }
+}
