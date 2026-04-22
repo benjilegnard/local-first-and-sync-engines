@@ -14,6 +14,7 @@ lang: fr
 Notes :
 - un développeur web, dans sa zone de confort. (~ 2 minutes)
 - en reconversion, découvre le monde
+- découvre l'état du dev web aujourd'hui
 
 
 ## Front / Back
@@ -176,22 +177,29 @@ Notes :
 
 
 ### Gestion d'état
-- Plus de session en back (*tousse tousse* REST)
-- Guess what... c'est le front qui gère...
-- Complexité ++
+- Plus de session en back<!-- .element class="fragment"-->
+- (\*tousse tousse\* REST) <!-- .element class="fragment"-->
+- Guess what... c'est le front qui gère...<!-- .element class="fragment"-->
+- Complexité ++<!-- .element class="fragment"-->
 Notes :
+- a un moment on a décidé que le serveur ne devait pas gérer d'état, fini les sessions
+- bah oui mais du coup, c'est le front qui se mange la complexité de l'état
 
 
 ### Complexité du front
-- gestion d'erreurs possibles
-- asynchronicité / conditions de course
+- gestion d'erreurs possibles<!-- .element class="fragment"-->
+- asynchronicité / conditions de course<!-- .element class="fragment"-->
 Notes :
 - aujourd'hui si on a des SPA, gestion d'état et que le front web est devenu complexe
 - c'est à cause de la latence, du réseau à gérer
+- 
 
 
 ### There is no cloud
 #### it's just someone else's computer
+
+Notes :
+- j'aime bien juste cette citation
 
 
 ### Data leaks
@@ -926,11 +934,17 @@ Notes :
 ## Feedback / Slides
 
 <div class="row">
-<a>
+<a href="https://openfeedback.io/nIlFquxGUZ1IJ1cDkc1z/2026-02-13/cmfz7neh8001o1enve10obqb4" target="_blank">
 Feedback :<br/>
-<img src="images/qrcodes/feedback-codeurs-en-seine.png" /></a>
-    @benjilegnard
+<img src="images/qrcodes/qrcode-touraine-tech-2026.png" />
 <a>
+<div class="col">
+    <img src="images/logo-touraine-tech.svg" alt="Touraine Tech 2026"/>
+    <br/><br/>
+    @benjilegnard
+</div>
+<a href="https://benjilegnard.github.io/local-first-and-sync-engines/" target="_blank">
 Slides :<br/>
-<img src="images/qrcodes/slides-on-github.png" /></a>
+<img src="images/qrcodes/slides-on-github.png" />
+</a>
 </div>
