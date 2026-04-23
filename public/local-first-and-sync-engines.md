@@ -902,6 +902,7 @@ Notes :
 Notes :
 - essayez, passez une partie de vos applis dessus.
 - faites des POC, testez ça vous même
+- faites vous votre avis.
 
 
 ### Votre serviteur
@@ -917,12 +918,25 @@ Notes :
 
 
 ### Remerciements
-- Sandro Maglione (@SandroMaglione)
-- Cory House (@housecor)
-- Aaron Boodman (@aboodman)
+<div class="row">
+    <div>
+Sandro Maglione<br/>(@SandroMaglione)<br/>
+      <img src="images/thanks-sandromaglione.jpg" style="border-radius: 50%;width: 300px;height: 300px;"/>
+</div>
+    <div>
+      Cory House<br/> (@housecor)<br/>
+      <img src="images/thanks-housecor.jpg" style="border-radius: 50%;width: 300px;height: 300px;"/>
+    </div>
+    <div>
+      Aaron Boodman<br/>(@aboodman)<br/>
+      <img src="images/thanks-aboodman.jpg" style="border-radius: 50%;width: 300px;height: 300px;"/>
+    </div>
+</div>
+etc...
 
 Notes :
-- remerciement à ses gens pour leurs articles et leurs discussions sur twitter sans qui j'aurais personnellement jamais découvert le sujet
+- remerciement à ses gens pour leurs articles et leurs discussions sur twitter/X
+- sans qui j'aurais personnellement jamais découvert le sujet
 
 
 <!-- .slide: data-background-image="images/hollow-knight/thanks.jpeg" data-background-position="center center" data-background-size="cover" -->
