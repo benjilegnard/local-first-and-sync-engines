@@ -360,8 +360,11 @@ Notes :
 
 
 #### Live queries
-<img src="schemas/live-queries.webp" style="max-height:40vh" />
 
+<div id="live-queries"></div>
+
+
+#### Live queries : implémentations
 - IndexedDB (DexieJs with liveQuery)
 - Postgres (PgLite's live queries)
 - SQLite (using WASM and something like wa-sqlite)

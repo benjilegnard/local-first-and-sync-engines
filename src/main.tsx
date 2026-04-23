@@ -16,6 +16,7 @@ import { DataFetching } from "./slides/data-fetching";
 import { DataSync } from "./slides/data-sync";
 import { CloudFirstSoftware } from "./slides/cloud-first-software";
 import { GitGraph } from "./slides/git-graph";
+import { LiveQueries } from "./slides/live-queries";
 
 let deck = new Reveal({
     plugins: [Markdown, Notes, Highlight],
@@ -32,6 +33,7 @@ const components: Record<string, ComponentChild> = {
     "data-fetching": DataFetching,
     "data-sync": DataSync,
     "git-graph": GitGraph,
+    "live-queries": LiveQueries,
 };
 
 deck
