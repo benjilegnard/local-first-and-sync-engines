@@ -27,21 +27,24 @@ export const LocalFirstSoftware: FunctionalComponent = () => (
         <line x1="80" y1="200" x2="165" y2="200" stroke="var(--ctp-text)" stroke-width={STROKE_WIDTH} marker-end="url(#lfs-arrowhead)" />
 
         {/* "zéro latence !" text */}
-        <text x="592" y="170" fill="var(--ctp-green)" font-size="26" font-family="'Source Sans Pro', sans-serif">
-            zéro
-        </text>
-        <text x="592" y="200" fill="var(--ctp-green)" font-size="26" font-family="'Source Sans Pro', sans-serif">
-            latence !
-        </text>
+        <g class="fragment" data-fragment-index="1">
+            <text x="592" y="170" fill="var(--ctp-green)" font-size="26" font-family="'Source Sans Pro', sans-serif">
+                zéro
+            </text>
+            <text x="592" y="200" fill="var(--ctp-green)" font-size="26" font-family="'Source Sans Pro', sans-serif">
+                latence !
+            </text>
+        </g>
 
         {/* "Réactif Instantanément" text */}
-        <text x="150" y="310" fill="var(--ctp-peach)" font-size="24" font-family="'Source Sans Pro', sans-serif">
-            Réactif
-        </text>
-        <text x="120" y="340" fill="var(--ctp-peach)" font-size="24" font-family="'Source Sans Pro', sans-serif">
-            Instantanément
-        </text>
-
+        <g class="fragment" data-fragment-index="3">
+            <text x="150" y="310" fill="var(--ctp-peach)" font-size="24" font-family="'Source Sans Pro', sans-serif">
+                Réactif
+            </text>
+            <text x="120" y="340" fill="var(--ctp-peach)" font-size="24" font-family="'Source Sans Pro', sans-serif">
+                Instantanément
+            </text>
+        </g>
         {/* Arrow from Action to BDD */}
         <line x1="258" y1="235" x2="380" y2="310" stroke="var(--ctp-text)" stroke-width={STROKE_WIDTH} marker-end="url(#lfs-arrowhead)" />
 
@@ -67,12 +70,14 @@ export const LocalFirstSoftware: FunctionalComponent = () => (
         <line x1="170" y1="560" x2="80" y2="560" stroke="var(--ctp-text)" stroke-width={STROKE_WIDTH} marker-end="url(#lfs-arrowhead)" />
 
         {/* "Fonctionne hors-ligne !" text */}
-        <text x="592" y="550" fill="var(--ctp-green)" font-size="24" font-family="'Source Sans Pro', sans-serif">
-            Fonctionne
-        </text>
-        <text x="592" y="580" fill="var(--ctp-green)" font-size="24" font-family="'Source Sans Pro', sans-serif">
-            hors-ligne !
-        </text>
+        <g class="fragment" data-fragment-index="2">
+            <text x="592" y="550" fill="var(--ctp-green)" font-size="24" font-family="'Source Sans Pro', sans-serif">
+                Fonctionne
+            </text>
+            <text x="592" y="580" fill="var(--ctp-green)" font-size="24" font-family="'Source Sans Pro', sans-serif">
+                hors-ligne !
+            </text>
+        </g>
 
         {/* Right section - Server */}
         <rect
@@ -84,10 +89,12 @@ export const LocalFirstSoftware: FunctionalComponent = () => (
         />
 
         {/* "Tolère du downtime" text */}
-        <path d="m 880,180 60,140" stroke="var(--ctp-green)" stroke-width="2" marker-end="url(#lfs-arrowhead-green)" />
-        <text x="950" y="170" fill="var(--ctp-green)" font-size="26" font-family="'Source Sans Pro', sans-serif" text-anchor="middle">
-            Tolère du downtime
-        </text>
+        <g class="fragment">
+            <path d="m 880,180 60,140" stroke="var(--ctp-green)" stroke-width="2" marker-end="url(#lfs-arrowhead-green)" />
+            <text x="950" y="170" fill="var(--ctp-green)" font-size="26" font-family="'Source Sans Pro', sans-serif" text-anchor="middle">
+                Tolère du downtime
+            </text>
+        </g>
 
         {/* Serveur box */}
         <rect x="855" y="330" width="190" height="90" rx="8" fill="none" stroke="var(--ctp-text)" stroke-width={STROKE_WIDTH} />
@@ -105,17 +112,20 @@ export const LocalFirstSoftware: FunctionalComponent = () => (
         </text>
 
         {/* "En direct!" text with arrow */}
-        <line x1="890" y1="520" x2="690" y2="430" stroke="var(--ctp-green)" stroke-width="2" marker-end="url(#lfs-arrowhead-green)" />
-        <text x="950" y="530" fill="var(--ctp-green)" font-size="22" font-family="'Source Sans Pro', sans-serif" text-anchor="middle">
-            En direct!
-        </text>
+        <g class="fragment">
+            <line x1="890" y1="520" x2="690" y2="430" stroke="var(--ctp-green)" stroke-width="2" marker-end="url(#lfs-arrowhead-green)" />
+            <text x="950" y="530" fill="var(--ctp-green)" font-size="22" font-family="'Source Sans Pro', sans-serif" text-anchor="middle">
+                En direct!
+            </text>
+        </g>
 
         {/* "Ou en différé" text with arrow */}
-        <line x1="870" y1="590" x2="630" y2="430" stroke="var(--ctp-green)" stroke-width="2" marker-end="url(#lfs-arrowhead-green)" />
-        <text x="950" y="600" fill="var(--ctp-green)" font-size="22" font-family="'Source Sans Pro', sans-serif" text-anchor="middle">
-            Ou en différé
-        </text>
-
+        <g class="fragment">
+            <line x1="870" y1="590" x2="630" y2="430" stroke="var(--ctp-green)" stroke-width="2" marker-end="url(#lfs-arrowhead-green)" />
+            <text x="950" y="600" fill="var(--ctp-green)" font-size="22" font-family="'Source Sans Pro', sans-serif" text-anchor="middle">
+                Ou en différé
+            </text>
+        </g>
         {/* Arrow markers */}
         <defs>
             <marker
