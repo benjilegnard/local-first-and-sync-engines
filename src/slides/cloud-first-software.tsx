@@ -30,16 +30,17 @@ export const CloudFirstSoftware: FunctionalComponent = () => (
         <line x1="20" y1="265" x2="200" y2="265" stroke="var(--ctp-text)" stroke-width={STROKE_WIDTH} marker-end="url(#arrowhead)" />
 
         {/* Loaders text */}
-        <text x="340" y="335" fill="var(--ctp-peach)" font-size="26" font-family="'Source Sans Pro', sans-serif">
-            Loaders
-        </text>
-        <text x="340" y="365" fill="var(--ctp-peach)" font-size="26" font-family="'Source Sans Pro', sans-serif">
-            Spinners
-        </text>
-        <text x="340" y="395" fill="var(--ctp-peach)" font-size="26" font-family="'Source Sans Pro', sans-serif">
-            Squelettes
-        </text>
-
+        <g class="fragment" data-fragment-index="2">
+            <text x="340" y="335" fill="var(--ctp-peach)" font-size="26" font-family="'Source Sans Pro', sans-serif">
+                Loaders
+            </text>
+            <text x="340" y="365" fill="var(--ctp-peach)" font-size="26" font-family="'Source Sans Pro', sans-serif">
+                Spinners
+            </text>
+            <text x="340" y="395" fill="var(--ctp-peach)" font-size="26" font-family="'Source Sans Pro', sans-serif">
+                Squelettes
+            </text>
+        </g>
         {/* Résultat box */}
         <rect x="203" y="420" width="175" height="60" rx="8" fill="none" stroke="var(--ctp-blue)" stroke-width={STROKE_WIDTH} />
         <text x="290" y="457" fill="var(--ctp-text)" font-size="28" font-family="'Source Sans Pro', sans-serif" text-anchor="middle">
@@ -71,17 +72,17 @@ export const CloudFirstSoftware: FunctionalComponent = () => (
         <text x="667" y="360" fill="var(--ctp-text)" font-size="28" font-family="'Source Sans Pro', sans-serif" text-anchor="middle">
             Internet
         </text>
+        <g class="fragment" data-fragment-index="1">
+            {/* Latence text */}
+            <text x="667" y="230" fill="var(--ctp-pink)" font-size="30" font-family="'Source Sans Pro', sans-serif" text-anchor="middle">
+                Latence
+            </text>
 
-        {/* Latence text */}
-        <text x="667" y="230" fill="var(--ctp-pink)" font-size="30" font-family="'Source Sans Pro', sans-serif" text-anchor="middle">
-            Latence
-        </text>
-
-        {/* Erreurs réseau text */}
-        <text x="667" y="560" fill="var(--ctp-red)" font-size="30" font-family="'Source Sans Pro', sans-serif" text-anchor="middle">
-            Erreurs réseau
-        </text>
-
+            {/* Erreurs réseau text */}
+            <text x="667" y="560" fill="var(--ctp-red)" font-size="30" font-family="'Source Sans Pro', sans-serif" text-anchor="middle">
+                Erreurs réseau
+            </text>
+        </g>
         {/* Arrow from Client to Internet */}
         <line x1="392" y1="270" x2="600" y2="330" stroke="var(--ctp-text)" stroke-width={STROKE_WIDTH} marker-end="url(#arrowhead)" />
 
@@ -99,7 +100,7 @@ export const CloudFirstSoftware: FunctionalComponent = () => (
         <line x1="1088" y1="330" x2="1088" y2="370" stroke="var(--ctp-text)" stroke-width={STROKE_WIDTH} />
         <line x1="1218" y1="330" x2="1218" y2="370" stroke="var(--ctp-text)" stroke-width={STROKE_WIDTH} />
         <path d="M 1088,370 A 65,20 0 0 0 1218,370" fill="none" stroke="var(--ctp-text)" stroke-width={STROKE_WIDTH} />
-        <text x="1153" y="355" fill="var(--ctp-text)" font-size="28" font-family="'Source Sans Pro', sans-serif" text-anchor="middle">
+        <text x="1153" y="378" fill="var(--ctp-text)" font-size="28" font-family="'Source Sans Pro', sans-serif" text-anchor="middle">
             BDD
         </text>
 
@@ -107,14 +108,15 @@ export const CloudFirstSoftware: FunctionalComponent = () => (
         <line x1="1015" y1="340" x2="1085" y2="340" stroke="var(--ctp-text)" stroke-width={STROKE_WIDTH} marker-end="url(#arrowhead)" />
         <line x1="1085" y1="360" x2="1015" y2="360" stroke="var(--ctp-text)" stroke-width={STROKE_WIDTH} marker-end="url(#arrowhead)" />
 
-        {/* "DOIT TOUJOURS être EN LIGNE" text */}
-        <text x="1017" y="560" fill="var(--ctp-mauve)" font-size="26" font-family="'Source Sans Pro', sans-serif" text-anchor="middle" font-style="italic">
-            DOIT TOUJOURS ÊTRE
-        </text>
-        <text x="1017" y="595" fill="var(--ctp-mauve)" font-size="26" font-family="'Source Sans Pro', sans-serif" text-anchor="middle" font-style="italic">
-            EN LIGNE
-        </text>
-
+        <g class="fragment" data-fragment-index="3">
+            {/* "DOIT TOUJOURS être EN LIGNE" text */}
+            <text x="1017" y="560" fill="var(--ctp-mauve)" font-size="26" font-family="'Source Sans Pro', sans-serif" text-anchor="middle" font-style="italic">
+                DOIT TOUJOURS ÊTRE
+            </text>
+            <text x="1017" y="595" fill="var(--ctp-mauve)" font-size="26" font-family="'Source Sans Pro', sans-serif" text-anchor="middle" font-style="italic">
+                EN LIGNE
+            </text>
+        </g>
         {/* Arrow from Internet back to Résultat */}
         <line x1="600" y1="370" x2="400" y2="420" stroke="var(--ctp-text)" stroke-width={STROKE_WIDTH} marker-end="url(#arrowhead)" />
 
