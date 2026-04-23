@@ -212,6 +212,7 @@ Notes :
 - Le "local-first"
 
 
+
 <!-- .slide: data-background-image="images/hollow-knight/bench.webp" data-background-position="center center" data-background-size="cover" --> 
 ## 2. Qu'est-ce qu'on VEUT faire avec le local-first ?
 Notes :
