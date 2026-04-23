@@ -196,7 +196,7 @@ Notes :
 
 
 ### There is no cloud
-#### it's just someone else's computer
+☁️ it's just someone else's computer
 
 Notes :
 - j'aime bien juste cette citation
@@ -214,7 +214,7 @@ Notes :
 
 
 <!-- .slide: data-background-image="images/hollow-knight/bench.webp" data-background-position="center center" data-background-size="cover" --> 
-## 2. Qu'est-ce qu'on VEUT faire avec le local-first ?
+## 2. C'est quoi, le local-first ?
 Notes :
 - Bon c'est quoi, d'où ça sort ?
 
@@ -322,7 +322,7 @@ Notes :
 
 
 <!-- .slide: data-background-image="images/hollow-knight/hornet.jpeg" data-background-position="center center" data-background-size="cover" --> 
-## 3. Qu'est ce que ça veut dire, et en quoi c'est différent ?
+## 3. Comment ? BDD locale.
 Notes :
 - local-first: comment on fait ?
 - On a vu ce que c'était maintenant, comment on implémente ?
@@ -350,9 +350,20 @@ Notes :
 - y'en asurement plein d'autres, j'ai pas la science infuse.
 
 
-#### But why?
+#### Embedded DB... But why?
 <img src="images/memes/ryan-reynolds-but-why.gif" alt="L'acteur Ryan Reynolds en tenue de chirurgien quie demande 'mais pourquoi?'"/>
 
+Notes :
+- Pourquoi vouloir autre chose qu'indexedDB ?
+
+
+#### Limitations d'indexedDB
+- Taille maximale <!-- .element class="fragment"-->
+- Gestion d'erreur pas ouf<!-- .element class="fragment"-->
+- Pas réactif<!-- .element class="fragment"-->
+- Complexité / Boilerplate <!-- .element class="fragment"-->
+
+<https://dexie.org/docs/The-Main-Limitations-of-IndexedDB><!-- .element class="fragment"-->
 Notes :
 - vitesse
 - offline
@@ -368,7 +379,7 @@ Notes :
 #### Live queries : implémentations
 - IndexedDB (DexieJs with liveQuery)
 - Postgres (PgLite's live queries)
-- SQLite (using WASM and something like wa-sqlite)
+- SQLite (wa-sqlite)
 
 
 #### Live queries (exemple dexie)
@@ -435,25 +446,35 @@ Notes :
 
 Notes :
 - thread local on va dire, évite de bloquer le rendu principal
-- permets d'intercepter des requêtes http d'assets et
 - les pré-charger, les mettres en cache.
 - et surtout, faire tourner en tâche de fond notre synchronisation de base.
+
+
+#### Autre intérêts
+- pre-fetching des assets
+- eager-loading
+- mise en cache http
+- versioning applicatif
+
+<https://angular.dev/ecosystem/service-workers>
+Notes :
+- pré chargement. arrivée une fois.
+- permets d'intercepter des requêtes http.
 - la vous voyez service worker, les sachants viendront me dire, mais c'est une PWA en fait
+- va dépendre de votre framework.
 
 
-
-
-#### et les PWA alors ?
+#### Apparté: et les PWA alors ?
 - c'est pas un pré-requis, mais un peu quand même.
 
 <https://whatpwacando.today/>
 
 <img class="qrcode" src="images/qrcodes/whatpwacando.png" />
 Notes :
-- les deux supporte un mode offline
+- interessé surtout par un mode offline
+- mode connecté / déconnecté
 - pas indispensable, mais très pratique
 - vous pouvez faire du local-first sans être une PWA et inversement.
-- mode connecté / déconnecté
 - notifications natives et autres accès au device goodies.
 - on reste sur des appels api en cache
 
@@ -461,8 +482,10 @@ Notes :
 ####  Sync + websockets
 <div id="sync-engine-web-worker"></div>
 
+
+
 <!-- .slide: data-background-image="images/hollow-knight/rest.jpeg" data-background-position="center center" data-background-size="cover" --> 
-## 4. Notre héros galère, mais va s'adapter
+## 4. Comment ? Sync engine.
 
 Notes :
 - bref on a aborder le sujet 1 du local-first, et j'en viens donc au deuxième sujet, le moteur de synchronisation
@@ -575,6 +598,8 @@ Composite types
 - List
 - Text
 
+
+### data types #2 (automerge)
 Scalar (non-composite) types:
 - IEEE 754 64 bit floating point numbers
 - Unsigned integers
@@ -607,13 +632,6 @@ Notes :
 - la combinaison de tout ça permet aux moteur de synchronisation
 - de gérer la synchronisation en temps réel de vos données.
 - en ligne comme hors ligne
-
-
-### Offline mode
-- stale mode
-Notes :
-- en gros le moteur gérer un état de vos données, synchro /stale 
-- 
 
 
 
@@ -652,6 +670,7 @@ Notre héros rencontre des péripéties, différentes implémentations, comparat
 - etc...
 Notes :
 - J'ai pas tout testé, voir encore rien du tout, juste zero me plait
+- electricSQL me semble la plus mature, (postgres, pglite, tanstack + principe de shapes)
 
 
 #### Zero
@@ -743,13 +762,13 @@ Notes :
 
 
 ### Changement de paradigme
+<!-- <div id="data-fetching"></div>-->
 <img src="schemas/data-fetching.png"/>
 
 
 ### Changement de paradigme (2)
-<!-- <div id="data-fetching"></div>-->
+<!-- <div id="data-sync"></div>-->
 <img src="schemas/data-sync.png"/>
-<!--<div id="data-sync"></div>-->
 
 
 ### MPA => SPA => PWA => SPA+SSR => local-first
@@ -760,7 +779,7 @@ Notes :
 
 ### Intérêts vs coûts d'implémentation.
 Notes :
-- faut pas se leurre, la plupart de nos clients vont pas en voir l'intérêt
+- faut pas se leurrer, la plupart de nos clients vont pas en voir l'intérêt
 - on est plus dans une course au cloud ajd
 - par contre côté utilisateurs, c'est ce qu'on veut.
 
@@ -768,18 +787,12 @@ Notes :
 ### et la sécurité dans tout ça ?
 🛡️?
 Notes :
-- pas encore creusé, mais elle est à implémenter au niveau du serveur de syncro moteur
+- la même que pour des webapps, si ordinateur compromis :
+- pas encore creusé, mais elle est à implémenter au niveau du serveur de synchro moteur
 
 
 ### Authentification
-- sur le long terme
-
-
-### Authorité serveur vs décentralisation ?
-Notes :
-- pas de réponse , pas creusé encore.
-- en théorie, yks automerge etc peuvent fonctionner en P2P
-- jazz ditto evolu
+- à gérer sur le long terme
 
 
 ### Et si je veux une API ?
@@ -790,11 +803,13 @@ Notes :
 
 
 ### Oui, mais si on danse ?
-= quand ne pas utiliser
+<img src="images/memes/silver-bullet.jpg"/>
+
 - si besoin d'autorité centrale
 - si un vrai besoin de temps réel
+
 Notes :
-- ( Il n'y a pas de balles en argent = quand ne pas l'utiliser )
+- (Il n'y a pas de balles en argent = quand ne pas l'utiliser)
 
 
 
@@ -803,24 +818,28 @@ Notes :
 
 
 ### Pourquoi c'est bien tout ça ?
-- plus besoin de librairie de gestion d'état ?
-- la base de données locale est votre état.
-- redonner contrôle à vos utilisateurs
+- plus besoin de librairie de gestion d'état.<!-- .element class="fragment"--> 
+- la base de données locale est votre état.<!-- .element class="fragment"--> 
+- redonner contrôle à vos utilisateurs<!-- .element class="fragment"--> 
+Notes :
+- en plus des avantages du local-first évoqué précédemment.
 
 
 ### C'est toujours des webapps
-- on reste sur du web (js/html/css)
+- on reste sur du web (js/html/css) 🌍
 - webapp mobile 
 
 
 ### Bénéfices
-- pas de loaders!
-- pas d'asynchrone dans le code métier!
-- réduction coûts cloud
+- 💈 pas de loaders ! 💀 pas de squelettes !<!-- .element class="fragment"--> 
+- ⚡ pas d'asynchrone dans le code métier! <!-- .element class="fragment"--> 
+- 💸 réduction coûts cloud <!-- .element class="fragment"--> 
 
 
 ### Move logic to the frontend
-- le back sert à synchroniser et autoriser uniquement
+- le back ne sert plus qu'à :
+- 🔄 synchroniser 
+- 👮 autoriser
 Notes :
 - je vais me prendre des tomates.
 - Mais c'est une bonne chose.
@@ -841,7 +860,7 @@ Notes :
 - sync engines va peut-être devenir le nouveau défaut (pas mme irma)
 
 
-### gneugneu, "ça existait déjà". Oui.
+### gneugneu, "ça existait déjà". Oui :
 
 - Lotus Notes (1989)
 - Microsoft Exchange (1996)
@@ -881,25 +900,24 @@ Notes :
 <img src="images/local-first-popularity.jpeg" />
 
 
-### La complexité technique
-- Devrait être abstraite par vos framework & librairies.
+### La complexité accidentelle
+- Devrait être abstraite par vos frameworks et librairies.
 - Pas dans vos serveurs. Pas dans le code applicatif.
+Notes :
+- je pense que ça élimine énormément de douleurs et de frictions du dev web moderne.
 
 
 ### Inconvénients
-- résoudre des conflits
-- applications distribuées
-- vendor-locking
+- chargement initial<!-- .element class="fragment"--> 
+- résoudre des conflits<!-- .element class="fragment"--> 
+- applications distribuées<!-- .element class="fragment"--> 
+- vendor-locking<!-- .element class="fragment"--> 
 Notes :
 - pas de balle en argent
 - résoudre des conflits, reste un problème compliqué
 - applications distribuées : modèle mental compliqué
 - limites dans les choix d'hébergeurs
 - vendor-lock / sticky
-
-
-### Agentique Sync ?
-<img src="schemas/agentic-ia-sync.webp" />
 
 
 ### Au minimum, pensons-y.
