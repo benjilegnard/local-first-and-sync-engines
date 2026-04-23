@@ -1,8 +1,3 @@
----
-lang: fr
----
-
-
 <!-- .slide: data-background-image="images/hollow-knight/city-of-tears.webp" data-background-position="center center" data-background-size="cover" --> 
 # Local-first <br/>& <br/>sync-engines : l'architecture du futur ?
 
