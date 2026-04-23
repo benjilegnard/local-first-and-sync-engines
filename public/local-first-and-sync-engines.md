@@ -441,8 +441,6 @@ Notes :
 - la vous voyez service worker, les sachants viendront me dire, mais c'est une PWA en fait
 
 
-####  Sync + websockets
-<img src="schemas/web-worker-with-web-socket-connection-in-sync-engine.webp"/>
 
 
 #### et les PWA alors ?
@@ -460,6 +458,8 @@ Notes :
 - on reste sur des appels api en cache
 
 
+####  Sync + websockets
+<div id="sync-engine-web-worker"></div>
 
 <!-- .slide: data-background-image="images/hollow-knight/rest.jpeg" data-background-position="center center" data-background-size="cover" --> 
 ## 4. Notre héros galère, mais va s'adapter
