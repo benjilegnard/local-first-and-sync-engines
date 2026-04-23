@@ -420,7 +420,7 @@ Notes :
 
 
 #### Sync engine, introduction
-<img src="schemas/local-only-with-sync-engine-for-remote-storage.webp" />
+<div id="sync-engine-remote-storage"></div>
 Notes :
 - synchronize les données de tous les clients tout en leur permettant d'écrire localement
 - chaque client ne s'occupe que de ses données, souvent dans un périmètre restreint
