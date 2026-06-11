@@ -1,0 +1,154 @@
+terme,prononciation,langue
+local-first,"laucal-feurst",anglais
+sync engine,"sink endjine",anglais
+sync engines,"sink endjines",anglais
+CRDT,"si-ar-di-ti",acronyme
+Conflict-free Replicated Data Types,"connflikt-fri répliqueïted deïta taïps",anglais
+SPA,"ès-pi-é (Single Page Application)",acronyme
+MPA,"èm-pi-é (Multi Page Application)",acronyme
+PWA,"pi-double-vé-é (Progressive Web App)",acronyme
+SSR,"ès-ès-ar (Server Side Rendering)",acronyme
+API,"a-pi-i / é-pi-aï",acronyme
+REST,"rèst",acronyme
+CRUD,"kreud",acronyme
+DB,"di-bi",acronyme
+GPU,"dji-pi-you",acronyme
+SSD,"ès-ès-di",acronyme
+WASM,"ouazm / web-assembleur",anglais
+GDPR,"dji-di-pi-ar",acronyme
+RGPD,"èr-jé-pé-dé",acronyme
+POC,"pok / pi-o-si",acronyme
+IHM,"i-ach-èm",acronyme
+BDD,"bé-dé-dé",acronyme
+front,"freunnt",anglais
+back,"bak",anglais
+frontend,"freunnt-ènd",anglais
+backend,"bak-ènd",anglais
+back office,"bak ofiss",anglais
+cloud,"klaoud",anglais
+cloud-first,"klaoud-feurst",anglais
+bundle,"beundeul",anglais
+JavaScript,"djava-skript",anglais
+NPM,"èn-pi-èm",acronyme
+node.js,"naud djè-ès",anglais
+node_modules,"naud modioules",anglais
+React,"ri-akt",anglais
+useState,"youz-stéït",anglais
+useEffect,"youz-éfèkt",anglais
+useQuery,"youz-kwiri",anglais
+useLiveQuery,"youz-laïv-kwiri",anglais
+state,"stéït",anglais
+fetch,"fètch",anglais
+loading,"laudigne",anglais
+spinner,"spineur",anglais
+skeleton,"skèleteun",anglais
+boilerplate,"boïlerplèït",anglais
+store,"stor",anglais
+cache,"kach",anglais
+L1 cache,"èl-ouane kach",anglais
+L2 cache,"èl-tou kach",anglais
+Mutex,"miou-tèks",anglais
+latency,"léïtensy",anglais
+round trip,"raound trip",anglais
+datacenter,"déïta-senteur",anglais
+network,"nètweurk",anglais
+network calls,"nètweurk kols",anglais
+offline,"oflaïne",anglais
+online,"onlaïne",anglais
+service worker,"seurviss weurkeur",anglais
+web worker,"web weurkeur",anglais
+WebSocket,"web-soket",anglais
+push,"pouch",anglais
+pull,"poul",anglais
+pre-fetching,"pri-fètchigne",anglais
+eager-loading,"igueur-laudigne",anglais
+data leaks,"déïta liks",anglais
+data fetching,"déïta fètchigne",anglais
+data sync,"déïta sinnk",anglais
+live queries,"laïv kwiris",anglais
+live query,"laïv kwiri",anglais
+query,"kwiri",anglais
+mutate,"miou-téït",anglais
+mutation,"miou-téïcheune",anglais
+IndexedDB,"inn-dèksd-di-bi",anglais
+SQLite,"ès-kiou-èl-laït / si-kwèl-laït",anglais
+wa-sqlite,"oua ès-kiou-èl-laït",anglais
+PGLite,"pi-dji-laït",anglais
+PgLite,"pi-dji-laït",anglais
+Postgres,"post-grès",anglais
+PostgreSQL,"post-grès-ès-kiou-èl",anglais
+Turso,"teursso",anglais
+DuckDB,"deuk-di-bi",anglais
+TinyBase,"taïny-béïs",anglais
+Dexie,"dèksi",anglais
+DexieJs,"dèksi djè-ès",anglais
+liveQuery,"laïv-kwiri",anglais
+Supabase,"soupa-béïs",anglais
+Firebase,"faïeur-béïs",anglais
+InstantDB,"insteunt-di-bi",anglais
+PouchDB,"paoutch-di-bi",anglais
+CouchDB,"kaoutch-di-bi",anglais
+RxDB,"ar-èks-di-bi",anglais
+Triplit,"triplit",anglais
+Fireproof,"faïeur-prouf",anglais
+Livestore,"laïv-stor",anglais
+electric SQL,"ilèktrik ès-kiou-èl",anglais
+electricSQL,"ilèktrik ès-kiou-èl",anglais
+orbitDB,"orbit-di-bi",anglais
+Powersync,"paoueur-sinnk",anglais
+Evolu,"évolou",anglais
+Ditto,"dito",anglais
+Convex,"konnvèks",anglais
+zero,"ziro",anglais
+replicache,"répli-kach",anglais
+Yjs,"waï djè-ès",anglais
+automerge,"auto-meurdje",anglais
+Loro,"loro",anglais
+Git,"guitt",anglais
+merge,"meurdje",anglais
+merge conflict,"meurdje konnflikt",anglais
+branch,"brannch",anglais
+feature,"fitcheur",anglais
+conflictHandler,"konnflikt-handleur",anglais
+eventual consistency,"ivèntiou-eul konnsistènsy",anglais
+Maps,"maps",anglais
+List,"list",anglais
+Text,"tèkst",anglais
+floating point,"flautigne poïnt",anglais
+Unsigned integers,"eunn-saïnd inteudjeurs",anglais
+Signed integers,"saïnd inteudjeurs",anglais
+Booleans,"boulianns",anglais
+Strings,"strignes",anglais
+Timestamps,"taïm-stamps",anglais
+Counters,"kaounteurs",anglais
+Byte arrays,"baït aréïs",anglais
+IEEE 754,"aï-tripeul-i sèvenn-faïv-for",acronyme
+Uint8Array,"you-int-éït aréï",anglais
+runtime,"reunn-taïm",anglais
+GraphQL,"graf-kiou-èl",anglais
+GET,"guett",anglais
+POST,"paust",anglais
+PUT,"pout",anglais
+PATCH,"patch",anglais
+DELETE,"di-lit",anglais
+OPTIONS,"opcheunns",anglais
+TRACE,"tréïs",anglais
+CONNECT,"konnèkt",anglais
+HEAD,"hèd",anglais
+HTTP,"ach-té-té-pé",acronyme
+alpha,"alfa",anglais
+hook,"houk",anglais
+hydratation,"hydrataçion",anglais
+vendor-locking,"venndor-lokigne",anglais
+vendor-lock,"venndor-lok",anglais
+sticky,"stiki",anglais
+embedded,"èmm-bèdèd",anglais
+source of truth,"sorss of trouth",anglais
+silver bullet,"silveur boulet",anglais
+The long now,"the long naou",anglais
+ownership,"auneurchip",anglais
+privacy,"praïvessy",anglais
+seamless,"simless",anglais
+landscape,"lanndskéïp",anglais
+ecosystem,"ikau-sisteum",anglais
+isomorphique,"isomorfik",français
