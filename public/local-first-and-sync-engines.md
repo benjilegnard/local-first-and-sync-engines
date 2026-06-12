@@ -431,32 +431,20 @@ Notes :
 - synchronize les données de tous les clients tout en leur permettant d'écrire localement
 - chaque client ne s'occupe que de ses données, souvent dans un périmètre restreint
 - le moteur s'occupe de s'assurer que tout est tout le temps à jour.
-- tourne en tâche de fond
+- pour faire ça, on va 
 
 
 #### Service Worker
-- ⚙️ Tourne en tâche de fond
-- 🔄 Push / Pull
-- 🔌 WebSocket
+- ⚙️ Intercepte les requêtes réseau
+- 📦 Cache / offline
+- 🔔 Push notifications
+- (brique de la PWA)
 
 Notes :
-- thread local on va dire, évite de bloquer le rendu principal
-- les pré-charger, les mettre en cache.
-- et surtout, faire tourner en tâche de fond notre synchronisation de base.
-
-
-#### Autre intérêts
-- pre-fetching des assets
-- eager-loading
-- mise en cache http
-- versioning applicatif
-
-<https://angular.dev/ecosystem/service-workers>
-Notes :
-- pré chargement. arrivée une fois.
-- permets d'intercepter des requêtes http.
-- la vous voyez service worker, les sachants viendront me dire, mais c'est une PWA en fait
-- va dépendre de votre framework.
+- proxy réseau event-driven, tué quand inactif
+- intercepte les requêtes http, les met en cache pour l'offline
+- attention : pas fait pour tenir une connexion longue (websocket), il se fait tuer
+- pour la connexion temps réel persistante : c'est le web worker (slide suivante)
 
 
 #### Apparté: et les PWA alors ?
@@ -474,8 +462,34 @@ Notes :
 - on reste sur des appels api en cache
 
 
-####  Sync + websockets
+#### Autre intérêts
+- pre-fetching des assets
+- eager-loading
+- mise en cache http
+- versioning applicatif
+
+<https://angular.dev/ecosystem/service-workers>
+Notes :
+- pré chargement. arrivée une fois.
+- permets d'intercepter des requêtes http.
+- la vous voyez service worker, les sachants viendront me dire, mais c'est une PWA en fait
+- va dépendre de votre framework.
+
+#### Web Worker + WebSocket
+
 <div id="sync-engine-web-worker"></div>
+
+
+#### (Shared) Web Worker + WebSocket
+- 🧵 Thread de fond → ne bloque pas le rendu
+- 🔌 Tient la connexion WebSocket (temps réel, persistante)
+- 🗂️ 1 connexion + 1 DB partagées entre onglets (SharedWorker)
+
+
+Notes :
+- WebSocket = le transport (le « comment »), le worker = le contexte d'exécution (le « où »)
+- un Web Worker vit tant qu'on le garde, contrairement au service worker
+- SharedWorker : une seule connexion + une seule copie de la DB pour tous les onglets
 
 
 
