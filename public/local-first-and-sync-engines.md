@@ -965,13 +965,12 @@ Notes :
 ## Feedback / Slides
 
 <div class="row">
-<a href="https://m.devoxx.com/events/devoxxfr2026/talks/26845/localfirst-et-syncengines-larchitecture-du-futur-" target="_blank">
+<a href="https://openfeedback.io/devlille-2026/2026-06-12/9a93ac0d-aade-4a54-9ef4-e5b640b0d113" target="_blank">
 Feedback :<br/>
-<img src="images/qrcodes/qrcode-devoxx-france-2026.png" />
+<img src="images/qrcodes/qrcode-devlille-2026.png" />
 <a>
 <div class="col">
-    <img src="images/logo-devoxx-france-noir.svg" alt="Logo Devoxx France 2026" class="light-theme" />
-    <img src="images/logo-devoxx-france-blanc.svg" alt="Logo Devoxx France 2026" class="dark-theme" />
+    <img src="images/logo-devlille-2026.svg" alt="Logo Devlille 2026" style="width:120px" />
     <br/><br/>
     @benjilegnard
 </div>
