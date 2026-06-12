@@ -537,11 +537,21 @@ Notes :
 - à un moment il va falloir fusionner.
 
 
+### Git
+<div id="git-graph-merged"></div>
+Notes :
+- une fois fusionné, tout est réconcilié sur main
+- main redevient la source de vérité partagée
+- apparté: apprenez le rebase interactif, ca change la vie
+
+
 ### Problème: consistence des données.
 <img src="images/memes/merge-conflicts.jpeg" />
 Notes :
+- git n'est pas une structure de donnée sans conflits.
 - avec git, c'est à vous de résoudre les conflits potentiels
 - git a sa structure de données qui stocke les changements
+-
 
 
 ### Comment résoudre les conflits ?
