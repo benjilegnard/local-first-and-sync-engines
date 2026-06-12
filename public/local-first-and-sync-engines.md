@@ -32,7 +32,7 @@ Notes :
 ### Taille des bundle javascript.
 <img src="images/memes/node-modules-big-ahah.webp" style="max-height:50vh"/>
 
-- 📦 ne sera pas addressée dans ce talk.<!-- .element class="fragment"-->
+- 📦 ne sera pas adressée dans ce talk.<!-- .element class="fragment"-->
 Notes :
 - oui, désolé, c'est pas le sujet
 - contexte, je vais parler d'APPLICATIONS WEB, pas de sites statiques.
@@ -96,7 +96,7 @@ Notes :
 Notes :
 - C'est physique, la distance fait qu'on doit gérer ça
 - acceptable en terme de tmps de réponse ? je pose la question ?
-- à l'heure ou la loi de moore n'en finit plus, mais on ne la voit plus
+- à l'heure où la loi de moore n'en finit plus, mais on ne la voit plus
 - des centaines de milliards de petaflop de GPU dans le cloud.
 
 
@@ -104,9 +104,10 @@ Notes :
 - 300ms 👀
 
 Notes :
-- on percoit la lenteur, la latence à partir d'environ ce temps
-- en dessous, on a une "impression" de rapidité
-- c'est pas parce qu'on fait des nimations à cette lenteur que vos services sont "autorisés" à prendre autant de temps  !!!
+- en UX, on percoit la lenteur, la latence à partir d'environ ce temps, même si c'est discutable
+- en dessous, on a une "impression" de rapidité (~=100ms = instantané)
+- études ~1 s = maintien du flux (Nielsen), Doherty ≈400 ms.
+- c'est pas parce qu'on fait des animations à cette lenteur que vos services sont "autorisés" à prendre autant de temps  !!!
 
 
 #### Pas tout le monde il a la fibre
@@ -159,7 +160,6 @@ function DataFetchingExample() {
 #### EVERYTHING!<!-- .element class="fragment"-->
 Notes :
 - Qu'est ce qui va pas dans ce code ? en dehors que c'est du react
-- // TODO ajouter du code fetch / json
 
 
 ### Synchronisation...
@@ -167,7 +167,7 @@ Notes :
 - ctrl+R / F5 qui cassent tout<!-- .element class="fragment"-->
 - state!<!-- .element class="fragment"-->
 Notes :
-- ça vous est déjà arriver de remplir un champ de formulaire et de le perdre en fermant l'onglet ?
+- ça vous est déjà arrivé de remplir un champ de formulaire et de le perdre en fermant l'onglet ?
 - problèmes de SPA classique
 
 
@@ -246,9 +246,9 @@ Notes :
 - Est.<!-- .element class="fragment"-->
 - Optionnel.<!-- .element class="fragment"-->
 Notes :
-- oui, ironiquement, il y a tout ajd pour qu'une app web fonctionne hors ligne
+- oui, ironiquement, il y a tout aujourd'hui dans les APIs navigateur pour qu'une webapp fonctionne hors ligne
 - `navigator.connection`
-- service worker: arréter de kernel panic
+- service worker: mise en cache
 
 
 <img src="images/memes/phoebe-teaching-joey-in-friends.jpg" style="max-height: 40vh"/>
@@ -277,7 +277,7 @@ Notes :
 
 
 #### 7. You retain ultimate ownership and control
-- Vous possédéz vos données.
+- Vous possédez vos données.
 - Vous contrôlez vos données.
 
 
@@ -290,7 +290,7 @@ Notes :
 - ✅ édition de documents/fichiers (graphes/canvas, dessins, texte, musique)<!-- .element class="fragment"-->
 - ✅ données personnelles (notes, chat, calendriers, budget, localisation)<!-- .element class="fragment"-->
 - ❌ Back office CRUD de gestion<!-- .element class="fragment"-->
-- ✅ Back office CRUD de gestion<!-- .element class="fragment"-->
+- ✅ Back office CRUD de gestion (ça dépends)<!-- .element class="fragment"-->
 - ❌ réseau social<!-- .element class="fragment"-->
 - ❌ e-commerce<!-- .element class="fragment"-->
 - ❌ banque<!-- .element class="fragment"-->
@@ -328,21 +328,21 @@ Notes :
 Notes :
 - l'idée c'est que tout tourne en local d'abord.
 - que votre logique métier de gestion / transformation de données soit dans le front
-- moins de coûts d'hébérgement cloud, votre back peut être down.
+- moins de coûts d'hébergement cloud, votre back peut être down.
 
 
 #### Base de données locale
 - IndexedDB
 - SQLite<!-- .element class="fragment"-->
 - PGLite<!-- .element class="fragment"-->
+- TinyBase<!-- .element class="fragment"-->
 - Turso 🦀<!-- .element class="fragment"-->
 - DuckDB 🦆<!-- .element class="fragment"-->
-- TinyBase<!-- .element class="fragment"-->
 - etc...<!-- .element class="fragment"-->
 Notes :
 - BDD qui tourne dans votre navigateur
 - en WASM pour les deux derniers
-- y'en asurement plein d'autres, j'ai pas la science infuse.
+- y'en a assurément plein d'autres, j'ai pas la science infuse.
 
 
 #### Embedded DB... But why?
@@ -441,7 +441,7 @@ Notes :
 
 Notes :
 - thread local on va dire, évite de bloquer le rendu principal
-- les pré-charger, les mettres en cache.
+- les pré-charger, les mettre en cache.
 - et surtout, faire tourner en tâche de fond notre synchronisation de base.
 
 
@@ -506,7 +506,7 @@ Notes :
 - Google Docs
 Notes :
 - liste non exhaustive
-- sous une forme ou une autres ces applis là utilise la synchro
+- sous une forme ou une autre ces applis là utilisent la synchro
 
 
 ### Un moteur de synchronisation
@@ -541,7 +541,7 @@ Notes :
 
 
 ### CRDT 
-- __C__onflit-free 
+- __C__onflict-free 
 - __R__eplicated 
 - __D__ata
 - __T__ypes
@@ -552,7 +552,7 @@ Notes :
 
 ### CRDT: propriétés
 - mise à jour concurrente sans coordination
-- alogrithme de résolution de conflits automatique
+- algorithme de résolution de conflits automatique
 - cohérence éventuelle
 Notes :
 - sans coord avec une autorité centrale
@@ -573,7 +573,7 @@ const ymap = ydoc.getMap()
 ymap.set('keyA', 'valueA')
 
 // Create another Yjs document (simulating a remote user)
-// and create some conflicting changes
+// and create some non-conflicting changes
 const ydocRemote = new Y.Doc()
 const ymapRemote = ydocRemote.getMap()
 ymapRemote.set('keyB', 'valueB')
@@ -590,8 +590,9 @@ console.log(ymap.toJSON()) // => { keyA: 'valueA', keyB: 'valueB' }
 ### data types (automerge)
 Composite types
 - Maps
-- List
+- Lists
 - Text
+- Counters
 
 
 ### data types #2 (automerge)
@@ -602,8 +603,8 @@ Scalar (non-composite) types:
 - Booleans
 - Strings
 - Timestamps
-- Counters
 - Byte arrays
+
 Notes :
 - souvent vous allez passer dans le CRDT des types de données custom
 - ca va permettre au CRDT de gérer lui même la résolution conflit finement
@@ -613,10 +614,10 @@ Notes :
 
 - déclarer vos types avec une API.
 - validation au runtime
-- sérialisation (UINT8Array)
+- sérialisation (Uint8Array)
 
 Notes :
-- le CRDT va souvent s'occuper ausssi de sérialisation
+- le CRDT va souvent s'occuper aussi de sérialisation
 - certains de valider au runtime le type
 - avantages taille réduite.
 
@@ -641,7 +642,7 @@ Notre héros rencontre des péripéties, différentes implémentations, comparat
 
 - indexedDB + pouchdb
 - rxdb + couchdb + pouchdb
-- electric sql
+- ElectricSQL
 - fireproof
 - orbitDB 
 - postgresql + sync engine devant
@@ -656,7 +657,7 @@ Notre héros rencontre des péripéties, différentes implémentations, comparat
 ### Sync Engines
 - zero
 - replicache 
-- electricSQL
+- ElectricSQL
 - Livestore
 - Powersync
 - Evolu
@@ -664,8 +665,8 @@ Notre héros rencontre des péripéties, différentes implémentations, comparat
 - Convex
 - etc...
 Notes :
-- J'ai pas tout testé, voir encore rien du tout, juste zero me plait
-- electricSQL me semble la plus mature, (postgres, pglite, tanstack + principe de shapes)
+- J'ai pas tout testé, voire encore rien du tout, juste zero me plait
+- ElectricSQL me semble la plus mature, (postgres, pglite, tanstack + principe de shapes)
 
 
 #### Zero
@@ -675,7 +676,6 @@ Notes :
 [https://zero.rocicorp.dev/](https://zero.rocicorp.dev/)
 
 Notes :
-- // TODO qrcode
 
 
 #### Show us the code!
@@ -794,7 +794,7 @@ Notes :
 
 Notes :
 - en gros votre API est un client du moteur de synchronization
-- déplacé côté serveur, nécéssite de code isomorphique/universel
+- déplacé côté serveur, nécessite de code isomorphique/universel
 
 
 ### Oui, mais si on danse ?
@@ -833,13 +833,13 @@ Notes :
 
 ### Move logic to the frontend
 - le back ne sert plus qu'à :
-- 🔄 synchroniser 
-- 👮 autoriser
+- 🔄 synchroniser <!-- .element class="fragment"--> 
+- 👮 autoriser <!-- .element class="fragment"--> 
 Notes :
 - je vais me prendre des tomates.
 - Mais c'est une bonne chose.
 - on peut prototyper rapidement sans ce soucier de l'hosting / database dans un premier temps.
-- arrêtons de siloter devs back vs devs front, faites tout dans le même language = le bonheur
+- arrêtons de siloter devs back vs devs front, faites tout dans le même langage = le bonheur
 - bref différentes approches pour un même but: agir d'abord, synchronizer ensuite
 
 
@@ -848,7 +848,7 @@ Notes :
 ## 8. Conclusion
 
 Notes :
-- 7 idéals du local -first, controversé
+- 7 idéaux du local -first, controversé
 - local first et sync engines, deux concepts différents, mais reliés
 - est-ce que ça va changer le développement web et mobile ?
 - ensemble on est plus fort
@@ -888,7 +888,7 @@ Notes :
 Notes :
 - avant il fallait implémenter vous même tout 
 - aujourd'hui un écosystème existe pour fournir le service par défaut 
-- de la même manière qu'on a eu des fwk qui faisaient du SPA par défaut, puis du SSr par défaut, puis de l'hydratation par défaut, je pense qu'on arrive à une ère ou les fwk vont faire du local-first par défaut.
+- de la même manière qu'on a eu des fwk qui faisaient du SPA par défaut, puis du SSr par défaut, puis de l'hydratation par défaut, je pense qu'on arrive à une ère où les fwk vont faire du local-first par défaut.
 
 
 #### Adoption
