@@ -6,6 +6,10 @@ lang: fr
 
 Une conférence de [Benjamin Legrand](https://www.benjaminlegrand.net) sur un pattern d'architecture moderne, efficace et performant, mais pas forcément simple à appréhender.
 
+## Slides 
+
+Visibles sur <https://benjilegnard.github.io/local-first-and-sync-engines/>
+
 ## Abstract
 
 ```markdown
@@ -26,17 +30,13 @@ Ensemble, nous verrons les grands principes du local-first, qu'est-ce qu'un mote
 
 Conférence sélectionnée / donnée à :
 
-- [BDX/IO]() - le 7 novembre 2025.
+- [BDX/IO](https://bdxio.fr/2025/talks/775) - le 7 novembre 2025.
 - [Codeurs en Seine](https://www.codeursenseine.com/2025/programme/conference-b-2-local-first-et-sync-engines-l-architecture-du-futur-benjamin-legrand) - le 21 novembre 2025.
 - ~~Snowcamp à Grenoble - le  14-16 février 2026~~ annulé, indisponible
 - [Touraine Tech 2026](https://touraine.tech/talk/cmfz7neh8001o1enve10obqb4?day=2) - le 13 février
 - [Devoxx FR 2026](https://m.devoxx.com/events/devoxxfr2026/talks/26845/localfirst-et-syncengines-larchitecture-du-futur-) - le 23 Avril 2026
 - [DevLille](https://devlille.fr/talk-page-52218b28-7876-437b-9637-590ba597e81c/) - le 12 juin 2026
 - [Sunny Tech](https://sunny-tech.io/sessions/cmlgj2kfq01ib01k2019lf1r2) - le 2 juillet 2026
-
-## Slides 
-
-Visibles sur <https://benjilegnard.github.io/local-first-and-sync-engines/>
 
 ## Plan
 
@@ -108,10 +108,10 @@ Visibles sur <https://benjilegnard.github.io/local-first-and-sync-engines/>
 - [x] aborder permission / sécurité
 - [x] pre-shot les inquiétudes, cas d'usage.
 - [x] insister sur le "on a déjà fait ça", oui mais on savait plus comment "we do not know why"
+- [x] enlever slides cloud computer, data leaks.
+- [x] expliciter mieux CRDT, détailler state-based CRDT vs op-based
 - [ ] ajouter examples de synchros (multi-utilisateurs)
 - [ ] réduire introduction (virer jokes npm)
-- [ ] enlever slides latence 300ms, cloud computer, data leaks.
-- [ ] expliciter mieux CRDT, détailler state-based CRDT vs op-based
 - [ ] examples de backend / adapter devant bases
 - [ ] principes des shapes d'elastic-sql
 
@@ -119,11 +119,19 @@ Visibles sur <https://benjilegnard.github.io/local-first-and-sync-engines/>
 
 à adresser...
 
-### DevLille 2026
+**Sunny Tech 2026**
+
+<https://openfeedback.io/sunnytech2026/2026-07-02/cmlgj2kfq01ib01k2019lf1r2>
+
+**DevLille 2026**
 
 <https://openfeedback.io/devlille-2026/2026-06-12/9a93ac0d-aade-4a54-9ef4-e5b640b0d113>
 
-### Devoxx FR 2026
+> Ca me rappelle des souvenirs avec les promesses du mode hors-ligne des débuts de HTML5...Des choses intéressantes, mais la partie synchro côté serveur n'a pas été beaucoup traitée, ce qui fait qu'il manque une grosse moitié de l'histoire, surtout si on parle Java sur le backend.
+
+> Je connaissais pas du tout, super introduction 🙏
+
+**Devoxx FR 2026**
 
 > ça manque un peu de profondeur sur le contenu. Qu'est ce qui transite en sync de db ? comment on gère l'async ? comment on communique à 'lutilisateur ? Les patern proche (faire du local fist avec des api c'est possible ?)
 
@@ -131,7 +139,7 @@ Visibles sur <https://benjilegnard.github.io/local-first-and-sync-engines/>
 
 > Le sujet est vaste et pas facile, et j'aurais aimé un peu plus de concret pour illustrer les propos. Ex: Quelle impact sur les modèlesde donnée et leurs conception ? Une app de démo, peut être ?
 
-### Touraine Tech 2026
+**Touraine Tech 2026**
 
 <https://openfeedback.io/nIlFquxGUZ1IJ1cDkc1z/2026-02-13/cmfz7neh8001o1enve10obqb4>
 
@@ -145,12 +153,18 @@ Visibles sur <https://benjilegnard.github.io/local-first-and-sync-engines/>
 
 > Présentation sombre et monotone
 
-### Codeurs en seine 2025
+**Codeurs en seine 2025**
 
 > Je vais jouer à Hollow Knight :)
 
-### BDX/IO 2025
+**BDX/IO 2025**
 
-> 
+<https://openfeedback.io/uWWjzz37YGweWaevV6MI/0/775>
 
+
+> J’ai apprécié d’avoir des liens vers toutes les sources de la présentation pour aller fouiller. J’ai pu découvrir qu’il y a tout un écosystème pour faire du local/offline. Je râle devant des pseudo app electron qui ne fonctionnent pas offline, donc le sujet faisait sens.
+
+> Pas facile avec un effet démo en mode running gag, qui n'a pas réussi à altérer la qualité de la présentation !
+
+> Intéressant mais un peu rapide et décousu :/
 
