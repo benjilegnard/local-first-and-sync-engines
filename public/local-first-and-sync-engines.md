@@ -74,6 +74,9 @@ Source: [Latency numbers every programmer should know](https://gist.github.com/j
 
 #### Latence
 <div id="latency-balls"></div>
+Notes :
+- à garder en tête, ici on est à l'intérieur d'un ordinateur
+- en dessous de la milliseconde, si vous avez des appliquations qui mettent plus d'une seconde à démarrer faut se poser des questions
 
 
 #### Latence (source)
@@ -82,9 +85,11 @@ Source: [Latency numbers every programmer should know](https://gist.github.com/j
 
 <img class="qrcode" src="images/qrcodes/qrcode-planetscale-caching.png"/>
 
+<img class="fragment" src="images/memes/ben-dicken-balls.png" style="max-height: 40vh;" />
+
 Notes :
-- à garder en tête, ici on est à l'intérieur d'un ordinateur
-- en dessous de la milliseconde, si vous avez des appliquations qui mettent plus d'une seconde à démarrer faut se poser des questions
+- autre source, ben dicken qui aime bien nous montrer ses boules sur twitter.
+- bref c'était pour illustrer tout ça, revenons à;
 - nos applications web et distribuées d'aujourd'hui elles ont un impondérable: la latence réseau
 
 
@@ -187,21 +192,6 @@ Notes :
 Notes :
 - aujourd'hui si on a des SPA, gestion d'état et que le front web est devenu complexe
 - c'est à cause de la latence, du réseau à gérer
-- 
-
-
-### There is no cloud
-☁️ it's just someone else's computer
-
-Notes :
-- j'aime bien juste cette citation
-
-
-### Data leaks
-🏴‍☠️
-
-Notes :
-- BDD centralisées.
 - Pourtant il y a, du moins il y aurait des solutions
 - Du coup est apparu le concept principal dont je veux parler aujourd'hui
 - Le "local-first"
@@ -359,11 +349,12 @@ Notes :
 - Complexité / Boilerplate <!-- .element class="fragment"-->
 
 <https://dexie.org/docs/The-Main-Limitations-of-IndexedDB><!-- .element class="fragment"-->
+
 Notes :
-- vitesse
-- offline
-- privacy
-- simplicité
+- taille max
+- Error management
+- performance
+- code query complexe.
 
 
 #### Live queries
@@ -463,6 +454,8 @@ Notes :
 
 
 #### Autre intérêts
+<img class="qrcode" src="images/qrcodes/angular-service-workers.png"/>
+
 - pre-fetching des assets
 - eager-loading
 - mise en cache http
@@ -484,7 +477,6 @@ Notes :
 - 🧵 Thread de fond → ne bloque pas le rendu
 - 🔌 Tient la connexion WebSocket (temps réel, persistante)
 - 🗂️ 1 connexion + 1 DB partagées entre onglets (SharedWorker)
-
 
 Notes :
 - WebSocket = le transport (le « comment »), le worker = le contexte d'exécution (le « où »)
@@ -518,6 +510,7 @@ Notes :
 - Figma
 - Linear
 - Google Docs
+- Teams
 Notes :
 - liste non exhaustive
 - sous une forme ou une autre ces applis là utilisent la synchro
@@ -565,23 +558,43 @@ Notes :
 
 
 ### CRDT 
-- __C__onflict-free 
-- __R__eplicated 
-- __D__ata
-- __T__ypes
+- **C**onflict-free 
+- **R**eplicated 
+- **D**ata
+- **T**ypes
 Notes :
 - au coeur de ces moteurs de synchro, il y a la notion primordiale
 - l'idée c'est qu'au niveau du modèle de donnée, la résolution de conflits va être automatique
 
 
 ### CRDT: propriétés
-- mise à jour concurrente sans coordination
-- algorithme de résolution de conflits automatique
-- cohérence éventuelle
+- mise à jour concurrente sans coordination<!-- .element class="fragment"-->
+- algorithme de résolution de conflits automatique<!-- .element class="fragment"-->
+- cohérence éventuelle<!-- .element class="fragment"-->
 Notes :
 - sans coord avec une autorité centrale
 - algorithme propre au type de donnée
 - il y a plusieurs librairies en JS qui permettent d'implémenter un CRDT, je vais juste en présenter une.
+
+
+### CRDT : deux écoles
+- 📦 State-based (CvRDT)<!-- .element class="fragment"-->
+  - on échange l'__état__, fusionné via un `merge()`
+  - merge commutatif + associatif + __idempotent__
+  - tolère pertes / doublons / désordre<!-- .element class="fragment"-->
+- 🔧 Op-based (CmRDT)<!-- .element class="fragment"-->
+  - on échange les __opérations__, qui __commutent__ 
+  - messages plus petits
+  - exige une livraison fiable, exactly-once, en ordre causal
+
+Notes :
+- même but (convergence sans conflit), deux mécaniques
+- state-based : merge idempotent => le réseau peut être pourri, on peut re-envoyer
+- en pratique on envoie des deltas (δ-CRDT), pas tout l'état à chaque fois
+- op-based : plus léger, mais demande plus au transport (ordre causal)
+- théoriquement les deux sont équivalents
+- les libs JS modernes (Yjs, Automerge, Loro) sont op/delta-based avec un encodage binaire compact
+- c'est aussi pour ça qu'il y a un sync engine en dessous : il assure le transport
 
 
 ### Example de CRDT avec Yjs
@@ -694,7 +707,7 @@ Notes :
 
 
 #### Zero
-<img src="images/logos/zero.svg" />
+<img src="images/logos/zero.svg" style="color: white;"/>
 <img src="images/qrcodes/qrcode-zero.png" class="qrcode" />
 
 [https://zero.rocicorp.dev/](https://zero.rocicorp.dev/)
@@ -746,7 +759,7 @@ Notes :
 
 
 ### Apparté sur Zero
-- encore en alpha
+- encore jeune, tout juste sorti d'alpha
 - pas complètement "local-first" pour l'instant
 Notes :
 - je préfères pas le recommander, mais
@@ -769,7 +782,18 @@ Notes :
 Notes :
 - Si vous avez fait du graphql ca doit vous parler,
 - Bien plus simple à appréhender
+- me pose plus la question quant put, quand patch?
 - de toutes facons est-ce que vous utilisiez vraiment autre chose que GET et POST
+
+
+### Bref,
+
+<img src="images/memes/khaby-lame.jpg" style="max-height:50vh;" />
+
+QUERY / MUTATE
+
+Notes :
+- Bref,
 - y'a pas que Zero qui offre ce genre d'api, la plupart des stores / sync engines s'en approche
 
 
@@ -989,12 +1013,12 @@ Notes :
 ## Feedback / Slides
 
 <div class="row">
-<a href="https://openfeedback.io/devlille-2026/2026-06-12/9a93ac0d-aade-4a54-9ef4-e5b640b0d113" target="_blank">
+<a href="https://openfeedback.io/sunnytech2026/2026-07-02/cmlgj2kfq01ib01k2019lf1r2" target="_blank">
 Feedback :<br/>
-<img src="images/qrcodes/qrcode-devlille-2026.png" />
+<img src="images/qrcodes/sunny-tech-2026.png" />
 <a>
 <div class="col">
-    <img src="images/logo-devlille-2026.svg" alt="Logo Devlille 2026" style="width:120px" />
+    <img src="images/logos/logo-sunny-tech.png" alt="Logo Sunny Tech 2026" style="width:120px" />
     <br/><br/>
     @benjilegnard
 </div>
